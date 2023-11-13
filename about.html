@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>StarmapVis | About</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+</head>
+<body style="background-color:#F4F6F6">
+
+<!--top nav-->
+<div class="row align-items-start shadow" style="background-color: #154360; color: #F4F6F6">
+    <div class="col">
+        <h2 class="p-2 ms-2 fw-light"><a href="index.html" style="text-decoration:none; color: #F4F6F6">StarmapVis</a></h2>
+    </div>
+    <div class="col p-1">
+        <ul class="nav justify-content-end p-2">
+            <li class="nav-item">
+                <a class="nav-link fw-light" href="about.html" style="color: white">ABOUT</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link fw-light" href="data.html" style="color: white">DATA</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link fw-light" href="https://github.com/holab-hku/starmapVR" style="color: white">SOURCE CODE</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<!--main-->
+<div class="container p-2" style="height: auto">
+
+    <div class="container" style="height: 15px"></div>
+    <div class="card card-body shadow">
+        <h4 class="card-title fw-light">About the application</h4>
+        <p class="card-text">StarmapVis allows a viewer to assess the high-level
+            clustering structure of cells and examine the interaction and connection
+            between different coordinates, such as 3D projections and spatial coordinates.
+            Users can follow the provided python and R scripts to obtain the proper input
+            for StarmapVis. The output then can be accessed in browsers from a desktop,
+            laptop or a mobile device. We provide multiple scripts for StarmapVis to easily
+            integrate with other single cell analysis tool. The scripts covers widely-used
+            python and R single cell analysis packages, including Scanpy and Seurat for
+            general analysis, PAGA and Monocle3 fro trajectory inference, Scaranoma for
+            integration analysis. You can find the scripts in <a href="https://github.com/holab-hku/starmapVis">https://github.com/holab-hku/starmapVis</a>.
+
+        </p>
+    </div>
+
+    <div class="container" style="height: 15px"></div>
+    <div class="card card-body shadow">
+        <h4 class="card-title fw-light">Instructions</h4>
+        <p class="card-text">1.Cell information csv file needs to contain a header row
+            with the following column names – x, y, z and labels – corresponding to the 3D
+            coordinates of points and the cell label (e.g. clusters, gene markers,
+            pseudotime, etc.).
+        </p>
+        <p class="card-text">2.Trajectory information csv file contains the following
+            column names – name, x, y, z, children and root – corresponding to the names
+            and 3D coordinates of edges and the connectivity amongst these edges. The
+            animation path information can be provided by inputting the list of names of
+            edges separated by space in the corresponding section.
+        </p>
+        <p class="card-text">3.History images can be uploaded by providing images in PNG
+            format and specifying the coordinates of images in the image upload section.
+        </p>
+        <p class="card-text">4.Csv file with another set of coordinates of analysis can
+            be provided in the last section if the user wants to animate the transformation
+            from 2D to 3D.
+        </p>
+        <p class="card-text">Users can choose uploading a single cell csv file or a
+            combination of several files and information to generate multiple kinds of
+            visualization from a single-cell RNA-seq data to a narrative of spatial
+            transcriptomic data.
+        </p>
+    </div>
+
+    <div class="container" style="height: 15px"></div>
+    <div class="card card-body shadow">
+        <h4 class="card-title fw-light">Contacts</h4>
+        <p class="card-text">
+            <strong>Dr Joshua W.K. Ho</strong>: jwkho@hku.hk <br/>
+            <strong>Xiunan Fang</strong>: xiunanfang@connect.hku.hk <br/>
+                <strong>Shichao Ma</strong>: u3572177@connect.hku.hk <br/>
+            <strong>School of Biomedical Sciences, Li Ka Shing Faculty of Medicine, The University of Hong Kong, Pokfulam, Hong Kong SAR, China</strong>
+        </p>
+    </div>
+
+
+    <div class="container" style="height: 15px"></div>
+    <div class="container" style="height: 15px"></div>
+</div>
+
+
+
+
+
+
+<!--foot-->
+<div class="row shadow justify-content-center fixed-bottom fw-lighter fs-6 text-muted" style="background-color: white">
+    Copyright &#169 2021 Ho Lab at HKU. All Rights Reserved
+</div>
+
+
+
+
+</body>
+</html>
