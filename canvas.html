@@ -28,22 +28,12 @@
         <script type="text/javascript" src="packages/js-colormaps.js"></script>
         <script type="text/javascript" src="packages/bootstrap-autocomplete.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.3.0/jszip.min.js"></script>
-	<script type="importmap">
-		{
-			"imports": {
-				"three": "../build/three.module.js",
-				"three/addons/": "./jsm/"
-			}
-		}
-	</script>
-
-	<script type="module">
-		import * as THREE from 'three';
-		import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-		import { VRButton } from 'three/addons/webxr/VRButton.js';
-		import { XRControllerModelFactory } from 'three/addons/webxr/XRControllerModelFactory.js';
-		import { XRHandModelFactory } from 'three/addons/webxr/XRHandModelFactory.js';
-	</script>
+	    
+	<script type="text/javascript" src="VRcomponents/three.module.js"></script>
+	<script type="text/javascript" src="VRcomponents/OrbitControls.js"></script>
+	<script type="text/javascript" src="VRcomponents/VRButton.js"></script>
+	<script type="text/javascript" src="VRcomponents/XRControllerModelFactory.module.js"></script>
+	<script type="text/javascript" src="VRcomponents/XRHandModelFactory.js"></script>
 	
     </head>
 
