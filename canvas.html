@@ -28,6 +28,23 @@
         <script type="text/javascript" src="packages/js-colormaps.js"></script>
         <script type="text/javascript" src="packages/bootstrap-autocomplete.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.3.0/jszip.min.js"></script>
+	<script type="importmap">
+		{
+			"imports": {
+				"three": "../build/three.module.js",
+				"three/addons/": "./jsm/"
+			}
+		}
+	</script>
+
+	<script type="module">
+		import * as THREE from 'three';
+		import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+		import { VRButton } from 'three/addons/webxr/VRButton.js';
+		import { XRControllerModelFactory } from 'three/addons/webxr/XRControllerModelFactory.js';
+		import { XRHandModelFactory } from 'three/addons/webxr/XRHandModelFactory.js';
+	</script>
+	
     </head>
 
     <body>
@@ -1313,22 +1330,16 @@
 
         document.querySelector('a-scene').addEventListener('enter-vr', function () {
             console.log("ENTERED VR");
-            import * as THREE from 'three';
-			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-			import { VRButton } from 'three/addons/webxr/VRButton.js';
-			import { XRControllerModelFactory } from 'three/addons/webxr/XRControllerModelFactory.js';
-			import { XRHandModelFactory } from 'three/addons/webxr/XRHandModelFactory.js';
-
-			let container;
-			let camera, scene, renderer;
-			let hand1, hand2;
-			let controller1, controller2;
-			let controllerGrip1, controllerGrip2;
-
-			let controls;
-
-			init();
-			animate();
+            let container;
+            let camera, scene, renderer;
+            let hand1, hand2;
+            let controller1, controller2;
+            let controllerGrip1, controllerGrip2;
+	
+            let controls;
+	
+            init();
+            animate();
 
             function init() {
 
