@@ -1328,8 +1328,8 @@
             console.log("ENTERED VR");
 	});
 	    
-            let container;
-            let camera, scene, renderer;
+            let container2;
+            let camera2, scene2, renderer2;
             let hand1, hand2;
             let controller1, controller2;
             let controllerGrip1, controllerGrip2;
@@ -1341,16 +1341,16 @@
 
             function init() {
 
-				container = document.createElement( 'div' );
-				document.body.appendChild( container );
+				container2 = document.createElement( 'div' );
+				document.body.appendChild( container2 );
 
-				scene = new THREE.Scene();
-				scene.background = new THREE.Color( 0x444444 );
+				scene2 = new THREE.Scene();
+				scene2.background = new THREE.Color( 0x444444 );
 
-				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
-				camera.position.set( 0, 1.6, 3 );
+				camera2 = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
+				camera2.position.set( 0, 1.6, 3 );
 
-				controls = new OrbitControls( camera, container );
+				controls = new OrbitControls( camera2, container2 );
 				controls.target.set( 0, 1.6, 0 );
 				controls.update();
 
@@ -1359,9 +1359,9 @@
 				const floor = new THREE.Mesh( floorGeometry, floorMaterial );
 				floor.rotation.x = - Math.PI / 2;
 				floor.receiveShadow = true;
-				scene.add( floor );
+				scene2.add( floor );
 
-				scene.add( new THREE.HemisphereLight( 0xbcbcbc, 0xa5a5a5, 3 ) );
+				scene2.add( new THREE.HemisphereLight( 0xbcbcbc, 0xa5a5a5, 3 ) );
 
 				const light = new THREE.DirectionalLight( 0xffffff, 3 );
 				light.position.set( 0, 6, 0 );
@@ -1374,45 +1374,45 @@
 				scene.add( light );
 
 				//
-                renderer = new THREE.WebGLRenderer( { antialias: true } );
-				renderer.setPixelRatio( window.devicePixelRatio );
-				renderer.setSize( window.innerWidth, window.innerHeight );
-				renderer.shadowMap.enabled = true;
-				renderer.xr.enabled = true;
+                renderer2 = new THREE.WebGLRenderer( { antialias: true } );
+				renderer2.setPixelRatio( window.devicePixelRatio );
+				renderer2.setSize( window.innerWidth, window.innerHeight );
+				renderer2.shadowMap.enabled = true;
+				renderer2.xr.enabled = true;
 
-				container.appendChild( renderer.domElement );
+				container2.appendChild( renderer2.domElement );
 
-				document.body.appendChild( VRButton.createButton( renderer ) );
+				document.body.appendChild( VRButton.createButton( renderer2 ) );
 
 				// controllers
 
-				controller1 = renderer.xr.getController( 0 );
+				controller1 = renderer2.xr.getController( 0 );
 				scene.add( controller1 );
 
-				controller2 = renderer.xr.getController( 1 );
+				controller2 = renderer2.xr.getController( 1 );
 				scene.add( controller2 );
 
 				const controllerModelFactory = new XRControllerModelFactory();
 				const handModelFactory = new XRHandModelFactory();
 
 				// Hand 1
-				controllerGrip1 = renderer.xr.getControllerGrip( 0 );
+				controllerGrip1 = renderer2.xr.getControllerGrip( 0 );
 				controllerGrip1.add( controllerModelFactory.createControllerModel( controllerGrip1 ) );
-				scene.add( controllerGrip1 );
+				scene2.add( controllerGrip1 );
 
-				hand1 = renderer.xr.getHand( 0 );
+				hand1 = renderer2.xr.getHand( 0 );
 				hand1.add( handModelFactory.createHandModel( hand1 ) );
 
-				scene.add( hand1 );
+				scene2.add( hand1 );
 
                 // Hand 2
-				controllerGrip2 = renderer.xr.getControllerGrip( 1 );
+				controllerGrip2 = renderer2.xr.getControllerGrip( 1 );
 				controllerGrip2.add( controllerModelFactory.createControllerModel( controllerGrip2 ) );
-				scene.add( controllerGrip2 );
+				scene2.add( controllerGrip2 );
 
-				hand2 = renderer.xr.getHand( 1 );
+				hand2 = renderer2.xr.getHand( 1 );
 				hand2.add( handModelFactory.createHandModel( hand2 ) );
-				scene.add( hand2 );
+				scene2.add( hand2 );
 
 				//
 
@@ -1433,23 +1433,23 @@
 
 			function onWindowResize() {
 
-				camera.aspect = window.innerWidth / window.innerHeight;
-				camera.updateProjectionMatrix();
+				camera2.aspect = window.innerWidth / window.innerHeight;
+				camera2.updateProjectionMatrix();
 
-				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer2.setSize( window.innerWidth, window.innerHeight );
 
 			}
             //
 
 			function animate() {
 
-				renderer.setAnimationLoop( render );
+				renderer2.setAnimationLoop( render2 );
 
 			}
 
 			function render() {
 
-				renderer.render( scene, camera );
+				renderer2.render( scene2, camera2 );
 
 			}
 
