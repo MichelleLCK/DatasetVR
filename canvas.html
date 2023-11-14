@@ -263,6 +263,14 @@
             </div>
         </div>
     </div>
+    
+    <div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5">
+        <button type="button" class="btn btn-secondary" onclick="EnterVRMode()">Enter VR</button>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="EnterVRMode()">Enter VR</button>
+    </div>
 
 
 
@@ -1324,9 +1332,9 @@
         });
 
 
-        document.querySelector('a-scene').addEventListener('enter-vr', function () {
+        function uploadEnter() {
             console.log("ENTERED VR");
-	});
+            document.querySelector('a-scene')
 	    
             let container2;
             let camera2, scene2, renderer2;
@@ -1452,6 +1460,7 @@
 				renderer2.render( scene2, camera2 );
 
 			}
+			});
 
     </script>
 
