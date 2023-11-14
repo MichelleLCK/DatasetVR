@@ -44,10 +44,10 @@
 		import { XRControllerModelFactory } from './VRcomponents/XRControllerModelFactory.js';
 		import { XRHandModelFactory } from './VRcomponents/XRHandModelFactory.js';
 		
-		window.OrbitControls = OrbitControls
-		window.VRButton = VRButton
-		window.XRControllerModelFactory = XRControllerModelFactory
-		window.XRHandModelFactory = XRHandModelFactory
+		window.OrbitControls = class OrbitControls
+		window.VRButton = class VRButton
+		window.XRControllerModelFactory = class XRControllerModelFactory
+		window.XRHandModelFactory = class XRHandModelFactory
 
 	</script>
 	
@@ -1357,7 +1357,7 @@
 				camera2 = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
 				camera2.position.set( 0, 1.6, 3 );
 
-				controls = new OrbitControls.OrbitControls( camera2, container2 );
+				controls = new window.OrbitControls( camera2, container2 );
 				controls.target.set( 0, 1.6, 0 );
 				controls.update();
 
