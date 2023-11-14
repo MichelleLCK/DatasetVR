@@ -1325,7 +1325,8 @@
 
         });
 
-        document.querySelector('a-scene').addEventListener('enter-vr',function() {
+	var scene = document.querySelector('a-scene')
+        scene.addEventListener('enter-vr',function(){
             console.log("ENTERED VR");
 	    
             let container2;
