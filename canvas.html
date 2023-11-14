@@ -30,21 +30,23 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.3.0/jszip.min.js"></script>
 	
 	    
+	<script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
+	
 	<script type="importmap">
-	{
-		"imports": {
-			"three": "/VRcomponents/three.module.js",
-			"OrbitControls": "/VRcomponents/OrbitControls.js",
+		{
+			"imports": {
+				"three": "https://unpkg.com/three@0.149/build/three.module.js",
+				"three/addons/": "https://unpkg.com/three@0.149/examples/jsm/"
+			}
 		}
-	}
 	</script>
 
 	<script type="module">
-		import { OrbitControls } from './VRcomponents/OrbitControls.js';
-		import { VRButton } from './VRcomponents/VRButton.js';
-		import { XRControllerModelFactory } from './VRcomponents/XRControllerModelFactory.js';
-		import { XRHandModelFactory } from './VRcomponents/XRHandModelFactory.js';
-
+			import * as THREE from 'three';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { VRButton } from 'three/addons/webxr/VRButton.js';
+			import { XRControllerModelFactory } from 'three/addons/webxr/XRControllerModelFactory.js';
+			import { XRHandModelFactory } from 'three/addons/webxr/XRHandModelFactory.js';
 	</script>
 	    
     </head>
