@@ -1330,7 +1330,7 @@
         });
 
 
-        function EnterVRMode() {
+        document.querySelector('a-scene').addEventListener('enter-vr',function() {
             console.log("ENTERED VR");
 	    
             let container2;
@@ -1457,7 +1457,7 @@
 				renderer2.render( scene2, camera2 );
 
 			}
-			}
+			});
 
     </script>
 
