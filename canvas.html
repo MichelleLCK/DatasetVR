@@ -265,7 +265,7 @@
 
     <script type="text/javascript" src="components/Axis.js"></script>
 
-    <script>
+    <script type="module">
 
         $('#theSearchModal').on('shown.bs.modal', function (e) {
             $(document).off('focusin.modal');
@@ -1311,9 +1311,7 @@
             });
 
         });
-	</script>
-	
-	<script type="module">
+
 		
         import { OrbitControls } from './VRcomponents/OrbitControls.js';
         import { VRButton } from './VRcomponents/VRButton.js';
