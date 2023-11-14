@@ -1332,7 +1332,13 @@
 
         function EnterVRMode() {
             console.log("ENTERED VR");
-            document.querySelector('a-scene')
+
+            <script type="module">
+		import { OrbitControls } from 'VRcomponents/OrbitControls.js';
+		import { VRButton } from 'VRcomponents/VRButton.js';
+		import { XRControllerModelFactory } from 'VRcomponents/XRControllerModelFactory.js';
+		import { XRHandModelFactory } from 'VRcomponents/XRHandModelFactory.js';
+            </script>
 	    
             let container2;
             let camera2, scene2, renderer2;
