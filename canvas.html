@@ -1330,10 +1330,17 @@
             });
 
         });
+</script>
 	
+<script type="module">
 	function EnterVRMode () {
             console.log("ENTERED VR");
-	    
+
+            import { OrbitControls } from './VRcomponents/OrbitControls.js';
+            import { VRButton } from './VRcomponents/VRButton.js';
+            import { XRControllerModelFactory } from './VRcomponents/XRControllerModelFactory.js';
+            import { XRHandModelFactory } from './VRcomponents/XRHandModelFactory.js';
+		
             let container2;
             let camera2, scene2, renderer2;
             let hand1, hand2;
@@ -1356,7 +1363,7 @@
 				camera2 = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
 				camera2.position.set( 0, 1.6, 3 );
 
-				controls = new window.OrbitControls( camera2, container2 );
+				controls = new OrbitControls( camera2, container2 );
 				controls.target.set( 0, 1.6, 0 );
 				controls.update();
 
