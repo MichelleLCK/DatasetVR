@@ -869,6 +869,12 @@
                 }
 
                 document.querySelector('body').appendChild(scene);
+		    
+		if (scene.hasLoaded) {
+		  EnterVRMode();
+		} else {
+		  scene.addEventListener('enter-vr', EnterVRMode);
+		}
 
                 $(document).ready(function() {
 
