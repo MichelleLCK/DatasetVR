@@ -311,9 +311,9 @@
 				const floor = new THREE.Mesh( floorGeometry, floorMaterial );
 				floor.rotation.x = - Math.PI / 2;
 				floor.receiveShadow = true;
-				//scene2.add( floor );
+				scene2.add( floor );
 
-				//scene2.add( new THREE.HemisphereLight( 0xbcbcbc, 0xa5a5a5, 3 ) );
+				scene2.add( new THREE.HemisphereLight( 0xbcbcbc, 0xa5a5a5, 3 ) );
 
 				const light = new THREE.DirectionalLight( 0xffffff, 3 );
 				light.position.set( 0, 6, 0 );
@@ -323,7 +323,7 @@
 				light.shadow.camera.right = 2;
 				light.shadow.camera.left = - 2;
 				light.shadow.mapSize.set( 4096, 4096 );
-				//scene2.add( light );
+				scene2.add( light );
 
 				//
                 renderer2 = new THREE.WebGLRenderer( { antialias: true } );
@@ -353,7 +353,7 @@
 				scene2.add( controllerGrip1 );
 
 				hand1 = renderer2.xr.getHand( 0 );
-				hand1.add( handModelFactory.createHandModel( hand1, 'mesh' ) );
+				hand1.add( handModelFactory.createHandModel( hand1) );
 
 				scene2.add( hand1 );
 
@@ -363,7 +363,7 @@
 				scene2.add( controllerGrip2 );
 
 				hand2 = renderer2.xr.getHand( 1 );
-				hand2.add( handModelFactory.createHandModel( hand2, 'mesh' ) );
+				hand2.add( handModelFactory.createHandModel( hand2) );
 				scene2.add( hand2 );
 
 				//
