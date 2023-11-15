@@ -294,7 +294,7 @@
 
 				//scene2 = new THREE.Scene();
 				//scene2.background = new THREE.Color( 0x444444 );
-                scene2 = document.querySelector('a-scene').object3D
+                //scene2 = document.querySelector('a-scene').object3D
                 //var scene = this.el.sceneEl.object3D
 
 				camera2 = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
@@ -1000,6 +1000,8 @@
 		    
 		if (scene.hasLoaded) {
 		  EnterVRMode();
+		} else {
+		  scene.addEventListener('enter-vr', EnterVRMode);
 		}
 
                 $(document).ready(function() {
