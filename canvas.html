@@ -302,8 +302,8 @@
 				container2 = document.createElement( 'div' );
 				document.body.appendChild( container2 );
 
-				/scene2 = new THREE.Scene();/
-				/scene2.background = new THREE.Color( 0x444444 );/
+				//scene2 = new THREE.Scene();
+				//scene2.background = new THREE.Color( 0x444444 );
 
 				camera2 = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
 				camera2.position.set( 0, 1.6, 3 );
@@ -317,9 +317,9 @@
 				const floor = new THREE.Mesh( floorGeometry, floorMaterial );
 				floor.rotation.x = - Math.PI / 2;
 				floor.receiveShadow = true;
-				/scene2.add( floor );/
+				//scene2.add( floor );
 
-				/scene2.add( new THREE.HemisphereLight( 0xbcbcbc, 0xa5a5a5, 3 ) );/
+				//scene2.add( new THREE.HemisphereLight( 0xbcbcbc, 0xa5a5a5, 3 ) );
 
 				const light = new THREE.DirectionalLight( 0xffffff, 3 );
 				light.position.set( 0, 6, 0 );
@@ -329,7 +329,7 @@
 				light.shadow.camera.right = 2;
 				light.shadow.camera.left = - 2;
 				light.shadow.mapSize.set( 4096, 4096 );
-				/scene2.add( light );/
+				//scene2.add( light );
 
 				//
                 renderer2 = new THREE.WebGLRenderer( { antialias: true } );
