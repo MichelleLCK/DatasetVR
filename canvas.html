@@ -1001,12 +1001,13 @@
                 }
 
                 document.querySelector('body').appendChild(scene);
+		EnterVRMode();
 		    
-		if (scene.hasLoaded) {
-		  EnterVRMode();
-		} else {
-		  scene.addEventListener('enter-vr', EnterVRMode);
-		}
+		//if (scene.hasLoaded) {
+		//  EnterVRMode();
+		//} else {
+		//  scene.addEventListener('enter-vr', EnterVRMode);
+		//}
 
                 $(document).ready(function() {
 
