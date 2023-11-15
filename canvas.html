@@ -29,24 +29,6 @@
         <script type="text/javascript" src="packages/bootstrap-autocomplete.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.3.0/jszip.min.js"></script>
 	
-	<script type="importmap">
-		{
-			"imports": {
-				"three": "https://unpkg.com/three@0.149/build/three.module.js",
-				"three/addons/": "https://unpkg.com/three@0.149/examples/jsm/"
-			}
-		}
-	</script>
-
-	<script type="module">
-		import * as THREE from 'three';
-		import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-		import { VRButton } from 'three/addons/webxr/VRButton.js';
-		import { XRControllerModelFactory } from 'three/addons/webxr/XRControllerModelFactory.js';
-		import { XRHandModelFactory } from 'three/addons/webxr/XRHandModelFactory.js';
-
-	</script>
-	    
     </head>
 
     <body>
@@ -275,7 +257,15 @@
 
     <script type="text/javascript" src="components/Axis.js"></script>
 
-
+	<script type="importmap">
+		{
+			"imports": {
+				"three": "https://unpkg.com/three@0.149/build/three.module.js",
+				"three/addons/": "https://unpkg.com/three@0.149/examples/jsm/"
+			}
+		}
+	</script>
+	    
     <script type="module">
 	import * as THREE from 'three';
 	import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
