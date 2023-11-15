@@ -304,7 +304,7 @@
 
 				//scene2 = new THREE.Scene();
 				//scene2.background = new THREE.Color( 0x444444 );
-		    		scene = document.querySelector('a-scene').object3D
+                scene2 = document.querySelector('a-scene').object3D
 
 				camera2 = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
 				camera2.position.set( 0, 1.6, 3 );
@@ -346,10 +346,10 @@
 				// controllers
 
 				controller1 = renderer2.xr.getController( 0 );
-				scene.add( controller1 );
+				scene2.add( controller1 );
 
 				controller2 = renderer2.xr.getController( 1 );
-				scene.add( controller2 );
+				scene2.add( controller2 );
 
 				const controllerModelFactory = new XRControllerModelFactory();
 				const handModelFactory = new XRHandModelFactory();
@@ -357,21 +357,21 @@
 				// Hand 1
 				controllerGrip1 = renderer2.xr.getControllerGrip( 0 );
 				controllerGrip1.add( controllerModelFactory.createControllerModel( controllerGrip1 ) );
-				scene.add( controllerGrip1 );
+				scene2.add( controllerGrip1 );
 
 				hand1 = renderer2.xr.getHand( 0 );
 				hand1.add( handModelFactory.createHandModel( hand1 ) );
 
-				scene.add( hand1 );
+				scene2.add( hand1 );
 
                 // Hand 2
 				controllerGrip2 = renderer2.xr.getControllerGrip( 1 );
 				controllerGrip2.add( controllerModelFactory.createControllerModel( controllerGrip2 ) );
-				scene.add( controllerGrip2 );
+				scene2.add( controllerGrip2 );
 
 				hand2 = renderer2.xr.getHand( 1 );
 				hand2.add( handModelFactory.createHandModel( hand2 ) );
-				scene.add( hand2 );
+				scene2.add( hand2 );
 
 				//
 
