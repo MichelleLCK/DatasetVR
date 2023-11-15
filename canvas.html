@@ -260,8 +260,8 @@
 	<script type="importmap">
 		{
 			"imports": {
-				"three": "https://unpkg.com/three@0.149/build/three.module.js",
-				"three/addons/": "https://unpkg.com/three@0.149/examples/jsm/"
+				"three": "https://unpkg.com/three@0.127/build/three.module.js",
+				"three/addons/": "https://unpkg.com/three@0.127/examples/jsm/"
 			}
 		}
 	</script>
@@ -1002,7 +1002,11 @@
 
                 document.querySelector('body').appendChild(scene);
 		    
-		EnterVRMode();
+		if (scene.hasLoaded) {
+		  EnterVRMode();
+		} else {
+		  scene.addEventListener('enter-vr', EnterVRMode);
+		}
 
                 $(document).ready(function() {
 
