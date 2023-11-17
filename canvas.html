@@ -1001,7 +1001,10 @@
                 }
 
                 document.querySelector('body').appendChild(scene);
-		EnterVRMode();
+                scene.addEventListener('enter-vr', function(){
+                    console.log("ENTERED VR");
+                });
+		//EnterVRMode();
 		    
 		//if (scene.hasLoaded) {
 		//  EnterVRMode();
