@@ -219,8 +219,8 @@ Loader.prototype = {
         }
 
         let edgeValue = 0;
-        let featureMax = 0;
-        let featureMin = 0;
+        let featureMax = -100000;
+        let featureMin = 100000;
         for (let i = 0; i < data.length; i++) {
             if (Math.abs(data[i][globalData.curVisMethod.x]) > edgeValue) {
                 edgeValue = Math.abs(data[i][globalData.curVisMethod.x]);
