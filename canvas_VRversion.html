@@ -866,8 +866,8 @@
                     loader.renderPoints(resolve, false, 0, true);
                 })
                 if (globalData.inputZip) {
-		    uploadZip = 'Sample/'+ target +'/input1';
-                    (loader.loadZip(uploadZip)).then(resolve => {
+		    uploadZip = 'Sample/'+ target +'/input1.zip';
+                    (loader.loadZip_browser(uploadZip)).then(resolve => {
 			console.log(uploadZip);
                         console.log(resolve);
                         globalData.cellImg = resolve["imgDict"];
