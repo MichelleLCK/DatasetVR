@@ -105,7 +105,7 @@ Loader.prototype = {
                 throw err; // or handle err
             }
         
-            newzip.loadAsync(data).then(function () {
+            newzip.loadAsync(data).then(function (zip) {
                 var promises = [];
                 var imgDict = {};
                 var imageTypeList = [];
