@@ -89,6 +89,77 @@ Loader.prototype = {
         })
     },
 
+    loadZip_browser: function (path) {
+        return new Promise((resolve) => {
+            var count = 0;
+            var newzip = new JSZip();
+            const imgDict = {};
+            var imageTypeList = [];
+            var img_size, img_type, img_name, idImg, content;
+            const idList = []
+            
+            var finished = [];
+            
+            JSZipUtils.getBinaryContent(path, function(err, data) {
+            if(err) {
+                throw err; // or handle err
+            }
+        
+            newzip.loadAsync(data).then(function () {
+                var promises = [];
+                var imgDict = {};
+                var imageTypeList = [];
+                Object.keys(zip.files).forEach(function (filename) {
+                    if ((filename.includes('.jpg') || filename.includes('.jpeg')) || filename.includes('.png')){
+                        img_size = filename.split("/");
+                        img_type = img_size[1];
+                        if (!(imageTypeList.includes(img_type))){
+                            imageTypeList[imageTypeList.length] = img_type;
+                        }
+                        img_name = img_size[img_size.length -1];
+                        if (!(img_name.startsWith('._'))){
+                            count += 1;
+                            idImg = img_name.split(".")[0];
+                            if (idList.indexOf(idImg)==-1){
+                                idList.push(idImg)
+                            }
+                            
+                            content = zip.files[filename].async('base64')
+                            promises.push(content)
+                            var delayedData = '';
+                            const getData = (content) => {
+                                return new Promise((resolve, reject) => {
+                                    setTimeout(() => resolve(content), 0);
+                                });
+                            }
+                            const processData = async (content,img_type, idImg) => {
+                                let data = await getData(content);
+                                delayedData = "data:image/png;base64," + data;
+                                imgDict[img_type][idImg] = delayedData;
+                            }
+                            processData(content, img_type, idImg)
+                            if (!imgDict[img_type]){
+                                imgDict[img_type]={};
+                            }
+                        }
+                        } 
+                }) 
+                return {"imgDict":imgDict, "imgTypeList":imageTypeList, "promises":promises};
+
+                
+            }).then(function (data) {
+                setTimeout(function (){  
+                    imgDict_ = data["imgDict"];
+                    imgTypeList_ = data["imgTypeList"];
+                    promises_ = data["promises"];
+                    console.log(imgDict_) 
+                    Promise.all(promises_).then(() => {
+                        resolve({"imgDict":imgDict_, "imgTypeList":imgTypeList_})
+                    });
+                }, 300)
+            })
+        })
+    },
 
     loadZip: function (path) {
         return new Promise((resolve) => {
