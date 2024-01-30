@@ -159,6 +159,7 @@ Loader.prototype = {
                 }, 300)
             })
         })
+    })
     },
 
     loadZip: function (path) {
