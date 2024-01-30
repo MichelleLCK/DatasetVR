@@ -556,35 +556,11 @@
             uploadModal = new bootstrap.Modal(document.getElementById('uploadModal'));
             uploadModal.toggle();
 
-        } else if (target === 's1' ) {
+        } else if (target === 's1' || target === 's2' || target === 's3') {
             globalData.inputFile1 = true;
+            globalData.inputZip = true;
             render();
 
-        } else if( target === 's2') {
-            globalData.inputFile1 = true;
-            globalData.inputFile2 = true;
-            globalData.inputPath = true;
-            globalData.curAnimationPath = globalData.sampleAnimationPath['s2'];
-            render();
-        } else if (target === 's3' || target === 's4') {
-            globalData.inputFile1 = true;
-            globalData.inputFile1Trans = true;
-            globalData.inputFile1Trans2 = true;
-            globalData.inputSlice = true;
-            globalData.startFrom2D = true;
-            globalData.showTrajectory = false;
-            if (target === 's3') {
-                globalData.numOfSlices = 2;
-                globalData.inputFile2 = true;
-                globalData.inputPath = true;
-                globalData.curAnimationPath = globalData.sampleAnimationPath[target];
-            } else {
-                globalData.numOfSlices = 4;
-                globalData.inputFile2 = true;
-                globalData.inputPath = true;
-                globalData.curAnimationPath = globalData.sampleAnimationPath[target];
-            }
-            render();
         }
         else {
             location.href = "index.html";
@@ -888,15 +864,189 @@
                     globalData.cellData = resolve;
                     loader.renderPoints(resolve, false, 0, true);
                 })
-                if (globalData.inputFile1Trans) {
-                    loader.load3DCSV('Sample/'+ target +'/input1Trans.csv').then(resolve => {
-                        globalData.cellData3D = resolve;
-                    })
-                    if (globalData.inputFile1Trans2) {
-                        loader.load3DCSV('Sample/'+ target +'/input1Trans2.csv').then(resolve => {
-                            globalData.cellData3D2 = resolve;
-                        })
-                    }
+                if (globalData.inputZip) {
+                    (loader.loadZip('Sample/'+ target +'/input1.zip')).then(resolve => {
+                        console.log(resolve);
+                        globalData.cellImg = resolve["imgDict"];
+                        globalData.imgTypeList = resolve["imgTypeList"];
+                        globalData.curImageType = globalData.imgTypeList[0];
+                        const imgTypeSelection = document.getElementById("imgTypeSelect");
+                        for (let j = 0; j < globalData.imgTypeList.length; j++){
+                            console.log(globalData.imgTypeList[j]);
+                            const id = globalData.imgTypeList[j];
+
+                            // create a label
+                            const label = document.createElement('label');
+                            label.setAttribute("for", id);
+                        
+                            // create a checkbox
+                            const checkbox = document.createElement('input');
+                            checkbox.type = "checkbox";
+                            checkbox.name = id;
+                            checkbox.value = id;
+                            checkbox.id = id + '_checkbox';
+                            checkbox.addEventListener("click", function (evt) {
+                                
+                                var targetElement = evt.target || evt.srcElement;
+                                let index = globalData.selectedImageType.indexOf(targetElement.name);
+                                console.log(targetElement.name)
+                                console.log(globalData.selectedImageType)
+                                console.log(index)
+                                if (index != -1){
+                                    console.log("unchecked")
+                                    if (document.getElementById("selectionModeDropdown").value == 'Single'){
+                                        var imgBoxIdDelete = "cellImage" + globalData.selectedImageType[index];
+                                        var imgBoxDelete = document.getElementById(imgBoxIdDelete);
+                                        if (imgBoxDelete){
+                                            imgBoxDelete.remove()
+                                        }
+                                        console.log(imgBoxIdDelete)
+                                    } else {
+                                        var imgBoxIdDelete = "cellImage" + globalData.selectedImageType[index];
+                                        var imgBoxDelete = document.getElementById(imgBoxIdDelete);
+                                        if (imgBoxDelete){
+                                            imgBoxDelete.remove()
+                                        }
+                                        console.log(imgBoxIdDelete)
+                                    }
+
+                                    globalData.selectedImageType.splice(index, 1); 
+                                } else {
+                                    globalData.selectedImageType.push(targetElement.name);
+                                    if (document.getElementById("selectionModeDropdown").value == 'Single'){
+                                        var displayRegion = document.getElementById("imgDisplay")
+                                        const imgBox = document.createElement('img');
+                                        imgBox.src = "image/qpiPlaceholder.png";
+                                        imgBox.width = globalData.imgSize;
+                                        var curImgType = targetElement.name
+                                        console.log(globalData.selectedImageType)
+                                        imgBox.id = "cellImage" + curImgType;
+                                        displayRegion.appendChild(imgBox);
+                                        console.log(curImgType)
+                                    } else {
+                                        var displayRegion = document.getElementById("imgDisplay")
+                                        const imgBox = document.createElement('img');
+                                        imgBox.src = "image/qpiPlaceholder.png";
+                                        imgBox.width = globalData.imgSize;
+                                        var curImgType = targetElement.name
+                                        console.log(globalData.selectedImageType)
+                                        imgBox.id = "cellImage" + curImgType;
+                                        displayRegion.appendChild(imgBox);
+                                        console.log(curImgType)
+                                    }
+                                    
+                                }
+                            });
+
+                            // place the checkbox inside a label
+                            label.appendChild(checkbox);
+                            // create text node
+                            label.appendChild(document.createTextNode( '\u00A0' ));
+                            label.appendChild(document.createTextNode(id));
+                            label.appendChild(document.createTextNode( '\u00A0\u00A0\u00A0' ));
+                            // label.appendChild(document.createTextNode(" "));
+                            imgTypeSelection.appendChild(label);
+                            console.log(checkbox)
+                        }
+
+                        var camSlider = document.getElementById("CameraDepthRange");
+                        camSlider.oninput = function() {
+                            globalData.camDepth = this.value;
+                            camera.setAttribute('far', this.value);
+                            console.log(this.value)
+                        }
+
+                        var slider = document.getElementById("imgSizeRange");
+                        // var output = document.getElementById("demo");
+                        slider.oninput = function() {
+                            globalData.imgScale = this.value;
+                            if (document.getElementById("selectionModeDropdown").value == 'Single'){
+                                for (let m = 0; m < globalData.selectedImageType.length; m++){
+                                    var selectImgType = globalData.selectedImageType[m]
+                                    var curImgBox = "cellImage" + selectImgType;
+                                    console.log(globalData.imgSize*globalData.imgScale)
+                                    document.getElementById(curImgBox).width = globalData.imgSize*globalData.imgScale;
+                                }
+                            } else {
+                                if(globalData.confirmSelectionBtn == false){
+                                    var listImg = document.getElementById('imgDisplay').querySelectorAll('[id^="cellImage"]');
+                                    for (let h = 0; h < listImg.length; h++){
+                                        listImg[h].width = globalData.imgSize*globalData.imgScale;
+                                    }
+                                } else{
+                                    var displayRegion = document.getElementById("imgDisplay")
+                                    while (displayRegion.lastElementChild) {
+                                        displayRegion.removeChild(displayRegion.lastElementChild);
+                                    }
+                                    
+                                    ImgWidthTotal = globalData.imgSize*globalData.imgScale*(globalData.selectedImageType.length+1)
+                                    ImgWidthTotalMax = 250
+                                    if(ImgWidthTotal < ImgWidthTotalMax){
+                                        for (let m = 0; m < globalData.selectedImageType.length; m++){
+                                            var selectImgType = globalData.selectedImageType[m]
+                                            var curImgBox = "imageContainer" + selectImgType;
+                                            var iDiv = document.createElement('div');
+                                            iDiv.id = curImgBox;
+                                            let textNode = document.createTextNode(selectImgType + "\n");
+                                            iDiv.appendChild(textNode)
+                                            iDiv.appendChild(document.createElement("br"))
+                                            
+                                            for (let n = 0; n < globalData.curImgMultiple.length; n++){
+                                                const imgBox = document.createElement('img');
+                                                var curId = globalData.curImgMultiple[n];
+                                                imgBox.width = globalData.imgSize;
+                                                imgBox.id = "cellImage" + selectImgType+'_'+curId;
+                                                imgBox.width = globalData.imgSize*globalData.imgScale
+                                                var curImgContent = globalData.cellImg[selectImgType][curId];
+                                                imgBox.src = curImgContent;
+                                                imgBox.title = curId;
+                                                iDiv.appendChild(imgBox);
+                                            }
+                                            displayRegion.appendChild(iDiv);
+                                        }
+                                    } else {
+                                        for (let n = 0; n < globalData.curImgMultiple.length; n++){
+                                            var curId = globalData.curImgMultiple[n];
+                                            
+                                            if(n == 0){
+                                                var curImgBox = "imageContainer";
+                                                var iDiv = document.createElement('div');
+                                                iDiv.id = curImgBox;
+                                                let TextImg = " ";
+                                                for (let m = 0; m < globalData.selectedImageType.length; m++){
+                                                    var selectImgType = globalData.selectedImageType[m]
+                                                    TextImg = TextImg + selectImgType
+                                                    if (m < (globalData.selectedImageType.length-1)){
+                                                        TextImg = TextImg + "\u00A0\u00A0\u00A0" + "&" + "\u00A0\u00A0\u00A0"
+                                                    }
+                                                }
+                                                TextImg = TextImg + "\n"
+                                                let textNode = document.createTextNode(TextImg);
+                                                iDiv.appendChild(textNode)
+                                                iDiv.appendChild(document.createElement("br"))
+                                            }
+                                            
+                                            for (let m = 0; m < globalData.selectedImageType.length; m++){
+                                                const imgBox = document.createElement('img');
+                                                var selectImgType = globalData.selectedImageType[m]
+                                                imgBox.id = "cellImage" + selectImgType+'_'+curId;
+                                                imgBox.width = globalData.imgSize*globalData.imgScale
+                                                var curImgContent = globalData.cellImg[selectImgType][curId];
+                                                imgBox.src = curImgContent;
+                                                imgBox.title = curId;
+                                                iDiv.appendChild(imgBox);
+                                            }
+                                        }
+                                        displayRegion.appendChild(iDiv);
+                                    }
+                                }
+                            }
+                        }
+                        console.log(globalData.imgTypeList);
+                        
+                        console.log(globalData.cellImg);
+                        cellImgDisplayToast.style.display = 'block';   
+                    });
                 }
             }
 
