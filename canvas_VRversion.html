@@ -675,6 +675,7 @@
 
                 if (globalData.inputZip) {
                     (loader.loadZip(uploadZip)).then(resolve => {
+			console.log(uploadZip);
                         console.log(resolve);
                         globalData.cellImg = resolve["imgDict"];
                         globalData.imgTypeList = resolve["imgTypeList"];
