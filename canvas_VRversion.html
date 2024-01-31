@@ -284,6 +284,10 @@
             let controllerGrip1, controllerGrip2;
 	
             let controls;
+	    const handModels = {
+				left: null,
+				right: null
+			};
 	
             init();
             animate();
@@ -354,9 +358,26 @@
 				scene2.add( controllerGrip1 );
 
 				hand1 = renderer2.xr.getHand( 0 );
-				hand1.add( handModelFactory.createHandModel( hand1) );
-
+		    		hand1.userData.currentHandModel = 0;
 				scene2.add( hand1 );
+		    
+				//hand1.add( handModelFactory.createHandModel( hand1) );
+				//scene2.add( hand1 );
+
+		    		handModels.left = [
+					handModelFactory.createHandModel( hand1, 'boxes' ),
+					handModelFactory.createHandModel( hand1, 'spheres' ),
+					handModelFactory.createHandModel( hand1, 'mesh' )
+				];
+
+				for ( let i = 0; i < 3; i ++ ) {
+
+					const model = handModels.left[ i ];
+					model.visible = i == 0;
+					hand1.add( model );
+
+				}
+
 
                 // Hand 2
 				controllerGrip2 = renderer2.xr.getControllerGrip( 1 );
@@ -364,8 +385,24 @@
 				scene2.add( controllerGrip2 );
 
 				hand2 = renderer2.xr.getHand( 1 );
-				hand2.add( handModelFactory.createHandModel( hand2) );
-				scene2.add( hand2 );
+		    		hand2.userData.currentHandModel = 0;
+				scene.add( hand2 );
+				//hand2.add( handModelFactory.createHandModel( hand2) );
+				//scene2.add( hand2 );
+
+				handModels.right = [
+					handModelFactory.createHandModel( hand2, 'boxes' ),
+					handModelFactory.createHandModel( hand2, 'spheres' ),
+					handModelFactory.createHandModel( hand2, 'mesh' )
+				];
+
+				for ( let i = 0; i < 3; i ++ ) {
+
+					const model = handModels.right[ i ];
+					model.visible = i == 0;
+					hand2.add( model );
+
+				}
 
 				//
 
