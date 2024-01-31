@@ -361,7 +361,7 @@
 
 				hand1 = renderer2.xr.getHand( 0 );
 		    		//hand1.userData.currentHandModel = 0;
-				scene2.add( hand1 );
+				
 		    
 				//hand1.add( handModelFactory.createHandModel( hand1) );
 				//scene2.add( hand1 );
@@ -380,7 +380,8 @@
 
 				}
 
-
+				scene2.add( hand1 );
+		    
                 // Hand 2
 				controllerGrip2 = renderer2.xr.getControllerGrip( 1 );
 				controllerGrip2.add( controllerModelFactory.createControllerModel( controllerGrip2 ) );
@@ -388,7 +389,7 @@
 
 				hand2 = renderer2.xr.getHand( 1 );
 		    		//hand2.userData.currentHandModel = 0;
-				scene2.add( hand2 );
+				
 				//hand2.add( handModelFactory.createHandModel( hand2) );
 				//scene2.add( hand2 );
 
@@ -405,7 +406,7 @@
 					hand2.add( model );
 
 				}
-
+				scene2.add( hand2 );
 				//
 
 				const geometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
