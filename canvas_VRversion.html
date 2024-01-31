@@ -380,6 +380,14 @@
 
 				}
 
+		    		hand1.addEventListener( 'pinchend', function () {
+
+					handModels.left[ this.userData.currentHandModel ].visible = false;
+					this.userData.currentHandModel = ( this.userData.currentHandModel + 1 ) % 3;
+					handModels.left[ this.userData.currentHandModel ].visible = true;
+
+				} );
+
 				
 		    
                 // Hand 2
@@ -407,6 +415,14 @@
 					hand2.add( model );
 
 				}
+
+		    		hand2.addEventListener( 'pinchend', function () {
+
+					handModels.right[ this.userData.currentHandModel ].visible = false;
+					this.userData.currentHandModel = ( this.userData.currentHandModel + 1 ) % 3;
+					handModels.right[ this.userData.currentHandModel ].visible = true;
+
+				} );
 				
 				//
 
