@@ -299,7 +299,9 @@
 
 				//scene2 = new THREE.Scene();
 				//scene2.background = new THREE.Color( 0x444444 );
-                scene2 = document.querySelector('a-scene').object3D
+		    
+                //scene2 = document.querySelector('a-scene').object3D
+		    
                 //scene2.setAttribute('vr-mode-ui', 'enabled', true);
                 //var scene = this.el.sceneEl.object3D
                 
@@ -358,7 +360,7 @@
 				scene2.add( controllerGrip1 );
 
 				hand1 = renderer2.xr.getHand( 0 );
-		    		hand1.userData.currentHandModel = 0;
+		    		//hand1.userData.currentHandModel = 0;
 				scene2.add( hand1 );
 		    
 				//hand1.add( handModelFactory.createHandModel( hand1) );
@@ -385,7 +387,7 @@
 				scene2.add( controllerGrip2 );
 
 				hand2 = renderer2.xr.getHand( 1 );
-		    		hand2.userData.currentHandModel = 0;
+		    		//hand2.userData.currentHandModel = 0;
 				scene2.add( hand2 );
 				//hand2.add( handModelFactory.createHandModel( hand2) );
 				//scene2.add( hand2 );
