@@ -354,7 +354,7 @@
 				scene2.add( controllerGrip1 );
 
 				hand1 = renderer2.xr.getHand( 0 );
-				hand1.add( handModelFactory.createHandModel( hand1) );
+				hand1.add( handModelFactory.createHandModel( hand1, 'mesh') );
 
 				scene2.add( hand1 );
 
@@ -364,7 +364,7 @@
 				scene2.add( controllerGrip2 );
 
 				hand2 = renderer2.xr.getHand( 1 );
-				hand2.add( handModelFactory.createHandModel( hand2) );
+				hand2.add( handModelFactory.createHandModel( hand2, 'mesh') );
 				scene2.add( hand2 );
 
 				//
