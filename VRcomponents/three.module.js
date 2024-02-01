@@ -30288,18 +30288,16 @@ class WebGLRenderer {
 
 			} else {
 
-				parameters.uniforms = programCache.getUniforms( material );
+			parameters.uniforms = programCache.getUniforms( material );
 
-				material.onBuild( object, parameters, _this );
+			material.onBeforeCompile( parameters, _this );
 
-				material.onBeforeCompile( parameters, _this );
+			program = programCache.acquireProgram( parameters, programCacheKey );
+			programs.set( programCacheKey, program );
 
-				program = programCache.acquireProgram( parameters, programCacheKey );
-				programs.set( programCacheKey, program );
+			materialProperties.uniforms = parameters.uniforms;
 
-				materialProperties.uniforms = parameters.uniforms;
-
-			}
+		}
 
 			const uniforms = materialProperties.uniforms;
 
