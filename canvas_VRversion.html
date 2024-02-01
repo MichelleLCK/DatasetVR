@@ -274,8 +274,8 @@
 	import { XRControllerModelFactory } from 'three/addons/webxr/XRControllerModelFactory.js';
 	import { XRHandModelFactory } from 'three/addons/webxr/XRHandModelFactory.js';
 	//import { XRHandModelFactory } from './VRcomponents/XRHandModelFactory.js';
-	import { XRHandMeshModel } from 'three/addons/webxr/XRHandMeshModel.js';
-	import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+	//import { XRHandMeshModel } from 'three/addons/webxr/XRHandMeshModel.js';
+	//import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 	    
 
 	window.EnterVRMode = function EnterVRMode () {
@@ -367,7 +367,7 @@
 		    		//hand1.userData.currentHandModel = 0;
 				//scene2.add( hand1 );
 		    
-				hand1.add( handModelFactory.createHandModel( hand1, 'boxes' ) );
+				hand1.add( handModelFactory.createHandModel( hand1, 'oculus' ) );
 				scene2.add( hand1 );
 
 		    		//handModels.left = [
@@ -403,7 +403,7 @@
 		    		//hand2.userData.currentHandModel = 0;
 				//scene2.add( hand2 );
 		    
-				hand2.add( handModelFactory.createHandModel( hand2, 'mesh' ) );
+				hand2.add( handModelFactory.createHandModel( hand2, 'oculus' ) );
 				scene2.add( hand2 );
 
 				//handModels.right = [
