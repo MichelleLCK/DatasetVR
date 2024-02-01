@@ -363,7 +363,7 @@
 		    		//hand1.userData.currentHandModel = 0;
 				//scene2.add( hand1 );
 		    
-				hand1.add( handModelFactory.createHandModel( hand1) );
+				hand1.add( handModelFactory.createHandModel( hand1, 'boxes' ) );
 				scene2.add( hand1 );
 
 		    		//handModels.left = [
@@ -399,7 +399,7 @@
 		    		//hand2.userData.currentHandModel = 0;
 				//scene2.add( hand2 );
 		    
-				hand2.add( handModelFactory.createHandModel( hand2, 'mesh' ) );
+				hand2.add( handModelFactory.createHandModel( hand2, 'boxes' ) );
 				scene2.add( hand2 );
 
 				//handModels.right = [
