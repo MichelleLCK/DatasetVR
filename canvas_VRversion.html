@@ -622,7 +622,7 @@
         } else if (target === 's1' || target === 's2' || target === 's3') {
             globalData.inputFile1 = true;
             globalData.inputZip = true;
-            render();
+            render2();
 
         }
         else {
@@ -668,7 +668,7 @@
             return false;
         }
 
-        function render () {
+        function render2 () {
 
             spinner = document.getElementById('theSpinner');
             environment = document.createElement('a-entity');
@@ -1353,7 +1353,7 @@
                     globalData.inputZip = true;
                 }
 
-                render();
+                render2();
                 uploadModal.toggle();
 
             } else {
