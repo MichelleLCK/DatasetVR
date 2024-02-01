@@ -261,8 +261,8 @@
 	<script type="importmap">
 		{
 			"imports": {
-				"three": "https://unpkg.com/three@0.127/build/three.module.js",
-				"three/addons/": "https://unpkg.com/three@0.127/examples/jsm/"
+				"three": "https://unpkg.com/three@0.161.0/build/three.module.js",
+				"three/addons/": "https://unpkg.com/three@0.161.0/examples/jsm/"
 			}
 		}
 	</script>
@@ -272,8 +272,9 @@
 	import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 	import { VRButton } from 'three/addons/webxr/VRButton.js';
 	import { XRControllerModelFactory } from 'three/addons/webxr/XRControllerModelFactory.js';
-	//import { XRHandModelFactory } from 'three/addons/webxr/XRHandModelFactory.js';
-	import { XRHandModelFactory } from './VRcomponents/XRHandModelFactory.js';
+	import { XRHandModelFactory } from 'three/addons/webxr/XRHandModelFactory.js';
+	//import { XRHandModelFactory } from './VRcomponents/XRHandModelFactory.js';
+	import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 	    
 
 	window.EnterVRMode = function EnterVRMode () {
