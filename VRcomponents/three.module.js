@@ -30214,34 +30214,30 @@ class WebGLRenderer {
 
 		function renderObject( object, scene, camera, geometry, material, group ) {
 
-			object.onBeforeRender( _this, scene, camera, geometry, material, group );
+		object.onBeforeRender( _this, scene, camera, geometry, material, group );
 
-			object.modelViewMatrix.multiplyMatrices( camera.matrixWorldInverse, object.matrixWorld );
-			object.normalMatrix.getNormalMatrix( object.modelViewMatrix );
+		object.modelViewMatrix.multiplyMatrices( camera.matrixWorldInverse, object.matrixWorld );
+		object.normalMatrix.getNormalMatrix( object.modelViewMatrix );
 
-			material.onBeforeRender( _this, scene, camera, geometry, object, group );
+		if ( object.isImmediateRenderObject ) {
 
-			if ( material.transparent === true && material.side === DoubleSide && material.forceSinglePass === false ) {
+			const program = setProgram( camera, scene, material, object );
 
-				material.side = BackSide;
-				material.needsUpdate = true;
-				_this.renderBufferDirect( camera, scene, geometry, material, object, group );
+			state.setMaterial( material );
 
-				material.side = FrontSide;
-				material.needsUpdate = true;
-				_this.renderBufferDirect( camera, scene, geometry, material, object, group );
+			bindingStates.reset();
 
-				material.side = DoubleSide;
+			renderObjectImmediate( object, program );
 
-			} else {
+		} else {
 
-				_this.renderBufferDirect( camera, scene, geometry, material, object, group );
-
-			}
-
-			object.onAfterRender( _this, scene, camera, geometry, material, group );
+			_this.renderBufferDirect( camera, scene, geometry, material, object, group );
 
 		}
+
+		object.onAfterRender( _this, scene, camera, geometry, material, group );
+
+	}
 
 		function getProgram( material, scene, object ) {
 
