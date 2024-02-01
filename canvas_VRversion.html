@@ -261,8 +261,8 @@
 	<script type="importmap">
 		{
 			"imports": {
-				"three": "https://unpkg.com/three@0.127.0/build/three.module.js",
-				"three/addons/": "https://unpkg.com/three@0.127.0/examples/jsm/"
+				"three": "https://github.com/mrdoob/three.js/tree/841d2e791d3e8a2463322c5ca31b16956828b91c/build/three.module.js",
+				"three/addons/": "https://github.com/mrdoob/three.js/tree/841d2e791d3e8a2463322c5ca31b16956828b91c/examples/jsm/"
 			}
 		}
 	</script>
@@ -274,7 +274,7 @@
 	import { XRControllerModelFactory } from 'three/addons/webxr/XRControllerModelFactory.js';
 	import { XRHandModelFactory } from 'three/addons/webxr/XRHandModelFactory.js';
 	//import { XRHandModelFactory } from './VRcomponents/XRHandModelFactory.js';
-	import { XRHandOculusMeshModel } from 'three/addons/webxr/XRHandOculusMeshModel.js';
+	//import { XRHandOculusMeshModel } from 'three/addons/webxr/XRHandOculusMeshModel.js';
 	//import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 	    
 
@@ -367,7 +367,7 @@
 		    		//hand1.userData.currentHandModel = 0;
 				//scene2.add( hand1 );
 		    
-				hand1.add( handModelFactory.createHandModel( hand1, 'oculus' ) );
+				hand1.add( handModelFactory.createHandModel( hand1, 'boxes ) );
 				scene2.add( hand1 );
 
 		    		//handModels.left = [
@@ -403,7 +403,7 @@
 		    		//hand2.userData.currentHandModel = 0;
 				//scene2.add( hand2 );
 		    
-				hand2.add( handModelFactory.createHandModel( hand2, 'oculus' ) );
+				hand2.add( handModelFactory.createHandModel( hand2, 'mesh' ) );
 				scene2.add( hand2 );
 
 				//handModels.right = [
