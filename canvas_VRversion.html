@@ -275,6 +275,9 @@
 			import { XRControllerModelFactory } from 'three/addons/webxr/XRControllerModelFactory.js';
 			import { XRHandModelFactory } from 'three/addons/webxr/XRHandModelFactory.js';
 
+	    window.EnterVRMode = function EnterVRMode () {
+            console.log("ENTERED VR");
+
 			let container;
 			let camera, scene, renderer;
 			let hand1, hand2;
@@ -452,6 +455,7 @@
 				renderer.render( scene, camera );
 
 			}
+	    }
 
     </script>
 	
