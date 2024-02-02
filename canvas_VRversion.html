@@ -779,8 +779,11 @@
 	
 				for ( let i = 0; i < 20; i ++ ) {
 	
-					const object = new THREE.Mesh( new THREE.BoxGeometry( 0.15, 0.15, 0.15 ), new THREE.MeshLambertMaterial( { color: 0xffffff } ) );
+					const object = new THREE.Mesh( new THREE.SphereGeometry( 5, 32, 16 ), new THREE.MeshLambertMaterial( { color: 0xffffff } ) );
 					scene.add( object );
+					//const geometry = new THREE.SphereGeometry( 15, 32, 16 ); 
+					//const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } ); 
+					//const sphere = new THREE.Mesh( geometry, material ); scene.add( sphere );
 	
 					const entity = world.createEntity();
 					entity.addComponent( Intersectable );
