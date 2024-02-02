@@ -300,9 +300,10 @@
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				scene = new THREE.Scene();
-				window.scene = scene;
-				scene.background = new THREE.Color( 0x444444 );
+				//scene = new THREE.Scene();
+				//window.scene = scene;
+				//scene.background = new THREE.Color( 0x444444 );
+				scene = document.querySelector('a-scene').object3D
 
 				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
 				camera.position.set( 0, 1.6, 3 );
