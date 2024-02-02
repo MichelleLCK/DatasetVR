@@ -607,6 +607,7 @@
 					object.scale.y = Math.random() + 0.5;
 					object.scale.z = Math.random() + 0.5;
 					this.needRandomizing = false;
+					console.log("random ball");
 
 				} );
 
@@ -779,7 +780,7 @@
 	
 				for ( let i = 0; i < 20; i ++ ) {
 	
-					const object = new THREE.Mesh( new THREE.SphereGeometry( 50, 32, 16 ), new THREE.MeshBasicMaterial( { color: 0xffff00 } ) );
+					const object = new THREE.Mesh( new THREE.SphereGeometry( 0.5, 32, 16 ), new THREE.MeshBasicMaterial( { color: 0xffff00 } ) );
 					scene.add( object );
 					//const geometry = new THREE.SphereGeometry( 15, 32, 16 ); 
 					//const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } ); 
