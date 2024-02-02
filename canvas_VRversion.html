@@ -261,8 +261,8 @@
 	<script type="importmap">
 		{
 			"imports": {
-				"three": "https://unpkg.com/three@0.127.0/build/three.module.js",
-				"three/addons/": "https://unpkg.com/three@0.127.0/examples/jsm/"
+				"three": "https://unpkg.com/three@0.161.0/build/three.module.js",
+				"three/addons/": "https://unpkg.com/three@0.161.0/examples/jsm/"
 			}
 		}
 	</script>
@@ -270,51 +270,41 @@
     <script type="module">
 
 	import * as THREE from 'three';
-	import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-	import { VRButton } from 'three/addons/webxr/VRButton.js';
-	import { XRControllerModelFactory } from 'three/addons/webxr/XRControllerModelFactory.js';
-	import { XRHandModelFactory } from 'three/addons/webxr/XRHandModelFactory.js';
-	//import { XRHandModelFactory } from './VRcomponents/XRHandModelFactory.js';
-	//import { XRHandOculusMeshModel } from 'three/addons/webxr/XRHandOculusMeshModel.js';
-	//import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-	    
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { VRButton } from 'three/addons/webxr/VRButton.js';
+			import { XRControllerModelFactory } from 'three/addons/webxr/XRControllerModelFactory.js';
+			import { XRHandModelFactory } from 'three/addons/webxr/XRHandModelFactory.js';
 
-	window.EnterVRMode = function EnterVRMode () {
-            console.log("ENTERED VR");
-		
-            let container2;
-            let camera2, scene2, renderer2;
-            let hand1, hand2;
-            let controller1, controller2;
-            let controllerGrip1, controllerGrip2;
-	
-            let controls;
-	    const handModels = {
+			let container;
+			let camera, scene, renderer;
+			let hand1, hand2;
+			let controller1, controller2;
+			let controllerGrip1, controllerGrip2;
+
+			const handModels = {
 				left: null,
 				right: null
 			};
-	
-            init();
-            animate();
 
-            function init() {
+			let controls;
 
-				container2 = document.createElement( 'div' );
-				document.body.appendChild( container2 );
+			init();
+			animate();
 
-				//scene2 = new THREE.Scene();
-				//scene2.background = new THREE.Color( 0x444444 );
-		    
-                scene2 = document.querySelector('a-scene').object3D
-		    
-                //scene2.setAttribute('vr-mode-ui', 'enabled', true);
-                //var scene = this.el.sceneEl.object3D
-                
 
-				camera2 = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
-				camera2.position.set( 0, 1.6, 3 );
+			function init() {
 
-				controls = new OrbitControls( camera2, container2 );
+				container = document.createElement( 'div' );
+				document.body.appendChild( container );
+
+				scene = new THREE.Scene();
+				window.scene = scene;
+				scene.background = new THREE.Color( 0x444444 );
+
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
+				camera.position.set( 0, 1.6, 3 );
+
+				controls = new OrbitControls( camera, container );
 				controls.target.set( 0, 1.6, 0 );
 				controls.update();
 
@@ -323,9 +313,9 @@
 				const floor = new THREE.Mesh( floorGeometry, floorMaterial );
 				floor.rotation.x = - Math.PI / 2;
 				floor.receiveShadow = true;
-				//scene2.add( floor );
+				scene.add( floor );
 
-				//scene2.add( new THREE.HemisphereLight( 0xbcbcbc, 0xa5a5a5, 3 ) );
+				scene.add( new THREE.HemisphereLight( 0xbcbcbc, 0xa5a5a5, 3 ) );
 
 				const light = new THREE.DirectionalLight( 0xffffff, 3 );
 				light.position.set( 0, 6, 0 );
@@ -335,100 +325,95 @@
 				light.shadow.camera.right = 2;
 				light.shadow.camera.left = - 2;
 				light.shadow.mapSize.set( 4096, 4096 );
-				//scene2.add( light );
+				scene.add( light );
 
 				//
-                renderer2 = new THREE.WebGLRenderer( { antialias: true } );
-				renderer2.setPixelRatio( window.devicePixelRatio );
-				renderer2.setSize( window.innerWidth, window.innerHeight );
-				renderer2.shadowMap.enabled = true;
-				renderer2.xr.enabled = true;
 
-				container2.appendChild( renderer2.domElement );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.shadowMap.enabled = true;
+				renderer.xr.enabled = true;
 
-				document.body.appendChild( VRButton.createButton( renderer2 ) );
+				container.appendChild( renderer.domElement );
+
+				document.body.appendChild( VRButton.createButton( renderer ) );
 
 				// controllers
 
-				controller1 = renderer2.xr.getController( 0 );
-				scene2.add( controller1 );
+				controller1 = renderer.xr.getController( 0 );
+				scene.add( controller1 );
 
-				controller2 = renderer2.xr.getController( 1 );
-				scene2.add( controller2 );
+				controller2 = renderer.xr.getController( 1 );
+				scene.add( controller2 );
 
 				const controllerModelFactory = new XRControllerModelFactory();
 				const handModelFactory = new XRHandModelFactory();
 
 				// Hand 1
-				controllerGrip1 = renderer2.xr.getControllerGrip( 0 );
+
+				controllerGrip1 = renderer.xr.getControllerGrip( 0 );
 				controllerGrip1.add( controllerModelFactory.createControllerModel( controllerGrip1 ) );
-				scene2.add( controllerGrip1 );
+				scene.add( controllerGrip1 );
 
-				hand1 = renderer2.xr.getHand( 0 );
-		    		//hand1.userData.currentHandModel = 0;
-				//scene2.add( hand1 );
-		    
-				hand1.add( handModelFactory.createHandModel( hand1, 'boxes' ) );
-				scene2.add( hand1 );
+				hand1 = renderer.xr.getHand( 0 );
+				hand1.userData.currentHandModel = 0;
+				scene.add( hand1 );
 
-		    		//handModels.left = [
-				//	handModelFactory.createHandModel( hand1, 'boxes' ),
-				//	handModelFactory.createHandModel( hand1, 'spheres' ),
-				//	handModelFactory.createHandModel( hand1, 'mesh' )
-				//];
+				handModels.left = [
+					handModelFactory.createHandModel( hand1, 'boxes' ),
+					handModelFactory.createHandModel( hand1, 'spheres' ),
+					handModelFactory.createHandModel( hand1, 'mesh' )
+				];
 
-				//for ( let i = 0; i < 3; i ++ ) {
+				for ( let i = 0; i < 3; i ++ ) {
 
-				//	const model = handModels.left[ i ];
-				//	model.visible = i == 0;
-				//	hand1.add( model );
+					const model = handModels.left[ i ];
+					model.visible = i == 0;
+					hand1.add( model );
 
-				//}
+				}
 
-		    		//hand1.addEventListener( 'pinchend', function () {
+				hand1.addEventListener( 'pinchend', function () {
 
-				//	handModels.left[ this.userData.currentHandModel ].visible = false;
-				//	this.userData.currentHandModel = ( this.userData.currentHandModel + 1 ) % 3;
-				//	handModels.left[ this.userData.currentHandModel ].visible = true;
+					handModels.left[ this.userData.currentHandModel ].visible = false;
+					this.userData.currentHandModel = ( this.userData.currentHandModel + 1 ) % 3;
+					handModels.left[ this.userData.currentHandModel ].visible = true;
 
-				//} );
+				} );
 
-				
-		    
-                // Hand 2
-				controllerGrip2 = renderer2.xr.getControllerGrip( 1 );
+				// Hand 2
+
+				controllerGrip2 = renderer.xr.getControllerGrip( 1 );
 				controllerGrip2.add( controllerModelFactory.createControllerModel( controllerGrip2 ) );
-				scene2.add( controllerGrip2 );
+				scene.add( controllerGrip2 );
 
-				hand2 = renderer2.xr.getHand( 1 );
-		    		//hand2.userData.currentHandModel = 0;
-				//scene2.add( hand2 );
-		    
-				hand2.add( handModelFactory.createHandModel( hand2, 'mesh' ) );
-				scene2.add( hand2 );
+				hand2 = renderer.xr.getHand( 1 );
+				hand2.userData.currentHandModel = 0;
+				scene.add( hand2 );
 
-				//handModels.right = [
-				//	handModelFactory.createHandModel( hand2, 'boxes' ),
-				//	handModelFactory.createHandModel( hand2, 'spheres' ),
-				//	handModelFactory.createHandModel( hand2, 'mesh' )
-				//];
+				handModels.right = [
+					handModelFactory.createHandModel( hand2, 'boxes' ),
+					handModelFactory.createHandModel( hand2, 'spheres' ),
+					handModelFactory.createHandModel( hand2, 'mesh' )
+				];
 
-				//for ( let i = 0; i < 3; i ++ ) {
+				for ( let i = 0; i < 3; i ++ ) {
 
-				//	const model = handModels.right[ i ];
-				//	model.visible = i == 0;
-				//	hand2.add( model );
+					const model = handModels.right[ i ];
+					model.visible = i == 0;
+					hand2.add( model );
 
-				//}
+				}
 
-		    		//hand2.addEventListener( 'pinchend', function () {
+				hand2.addEventListener( 'pinchend', function () {
 
-				//	handModels.right[ this.userData.currentHandModel ].visible = false;
-				//	this.userData.currentHandModel = ( this.userData.currentHandModel + 1 ) % 3;
-				//	handModels.right[ this.userData.currentHandModel ].visible = true;
+					handModels.right[ this.userData.currentHandModel ].visible = false;
+					this.userData.currentHandModel = ( this.userData.currentHandModel + 1 ) % 3;
+					handModels.right[ this.userData.currentHandModel ].visible = true;
 
-				//} );
-				
+				} );
+
 				//
 
 				const geometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
@@ -448,26 +433,25 @@
 
 			function onWindowResize() {
 
-				camera2.aspect = window.innerWidth / window.innerHeight;
-				camera2.updateProjectionMatrix();
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
 
-				renderer2.setSize( window.innerWidth, window.innerHeight );
+				renderer.setSize( window.innerWidth, window.innerHeight );
 
 			}
-            //
+			//
 
 			function animate() {
 
-				renderer2.setAnimationLoop( render );
+				renderer.setAnimationLoop( render );
 
 			}
 
 			function render() {
 
-				renderer2.render( scene2, camera2 );
+				renderer.render( scene, camera );
 
 			}
-		}
 
     </script>
 	
