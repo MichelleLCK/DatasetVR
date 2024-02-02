@@ -661,7 +661,7 @@
 				scene.background = new THREE.Color( 0x444444 );
 	
 				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
-				camera.position.set( 0, 1.2, 1 );
+				camera.position.set( 7.5, 7.5, 25 );
 	
 				scene.add( new THREE.HemisphereLight( 0xcccccc, 0x999999, 3 ) );
 	
@@ -720,7 +720,7 @@
 	
 	
 				// setup objects in scene and entities
-				const floorGeometry = new THREE.PlaneGeometry( 4, 4 );
+				const floorGeometry = new THREE.PlaneGeometry( 50, 50 );
 				const floorMaterial = new THREE.MeshPhongMaterial( { color: 0x222222 } );
 				const floor = new THREE.Mesh( floorGeometry, floorMaterial );
 				floor.rotation.x = - Math.PI / 2;
@@ -780,7 +780,7 @@
 	
 				for ( let i = 0; i < 20; i ++ ) {
 	
-					const object = new THREE.Mesh( new THREE.SphereGeometry( 0.1, 32, 16 ), new THREE.MeshLambertMaterial( { color: 0xffffff } ) );
+					const object = new THREE.Mesh( new THREE.SphereGeometry( 0.5, 32, 16 ), new THREE.MeshLambertMaterial( { color: 0xffffff } ) );
 					scene.add( object );
 					//const geometry = new THREE.SphereGeometry( 15, 32, 16 ); 
 					//const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } ); 
@@ -790,7 +790,7 @@
 					entity.addComponent( Intersectable );
 					entity.addComponent( Randomizable );
 					entity.addComponent( Object3D, { object: object } );
-					entity.addComponent( Draggable );
+					//entity.addComponent( Draggable );
 					console.log("Added a ball");
 	
 				}
