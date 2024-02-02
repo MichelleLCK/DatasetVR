@@ -329,29 +329,29 @@
 				floor.receiveShadow = true;
 				scene.add( floor );
 
-				//const menuGeometry = new THREE.PlaneGeometry( 0.24, 0.5 );
-				//const menuMaterial = new THREE.MeshPhongMaterial( {
-				//	opacity: 0,
-				//	transparent: true,
-				//} );
-				//const menuMesh = new THREE.Mesh( menuGeometry, menuMaterial );
-				//menuMesh.position.set( 0.4, 1, - 1 );
-				//menuMesh.rotation.y = - Math.PI / 12;
-				//scene.add( menuMesh );
+				const menuGeometry = new THREE.PlaneGeometry( 0.24, 0.5 );
+				const menuMaterial = new THREE.MeshPhongMaterial( {
+					opacity: 0,
+					transparent: true,
+				} );
+				const menuMesh = new THREE.Mesh( menuGeometry, menuMaterial );
+				menuMesh.position.set( 0.4, 1, - 1 );
+				menuMesh.rotation.y = - Math.PI / 12;
+				scene.add( menuMesh );
 	
-				//const resetButton = makeButtonMesh( 0.2, 0.1, 0.01, 0x355c7d );
-				//const resetButtonText = createText( 'reset', 0.06 );
-				//resetButton.add( resetButtonText );
-				//resetButtonText.position.set( 0, 0, 0.0051 );
-				//resetButton.position.set( 0, - 0.06, 0 );
-				//menuMesh.add( resetButton );
+				const resetButton = makeButtonMesh( 0.2, 0.1, 0.01, 0x355c7d );
+				const resetButtonText = createText( 'reset', 0.06 );
+				resetButton.add( resetButtonText );
+				resetButtonText.position.set( 0, 0, 0.0051 );
+				resetButton.position.set( 0, - 0.06, 0 );
+				menuMesh.add( resetButton );
 	
-				//const exitButton = makeButtonMesh( 0.2, 0.1, 0.01, 0xff0000 );
-				//const exitButtonText = createText( 'exit', 0.06 );
-				//exitButton.add( exitButtonText );
-				//exitButtonText.position.set( 0, 0, 0.0051 );
-				//exitButton.position.set( 0, - 0.18, 0 );
-				//menuMesh.add( exitButton );
+				const exitButton = makeButtonMesh( 0.2, 0.1, 0.01, 0xff0000 );
+				const exitButtonText = createText( 'exit', 0.06 );
+				exitButton.add( exitButtonText );
+				exitButtonText.position.set( 0, 0, 0.0051 );
+				exitButton.position.set( 0, - 0.18, 0 );
+				menuMesh.add( exitButton );
 
 				scene.add( new THREE.HemisphereLight( 0xbcbcbc, 0xa5a5a5, 3 ) );
 
