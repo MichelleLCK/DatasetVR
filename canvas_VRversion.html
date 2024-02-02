@@ -779,6 +779,8 @@
 					.registerSystem( HandRaySystem, { handPointers: [ handPointer1, handPointer2 ] } );
 	
 				for ( let i = 0; i < 20; i ++ ) {
+				//data = globalData.cellData;
+				//for (let i = 0; i < data.length; i++) { 
 	
 					const object = new THREE.Mesh( new THREE.SphereGeometry( 0.1, 32, 16 ), new THREE.MeshLambertMaterial( { color: 0xffffff } ) );
 					scene.add( object );
