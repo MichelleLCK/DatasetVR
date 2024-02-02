@@ -294,16 +294,25 @@
 			init();
 			animate();
 
+		    	function makeButtonMesh( x, y, z, color ) {
+
+				const geometry = new THREE.BoxGeometry( x, y, z );
+				const material = new THREE.MeshPhongMaterial( { color: color } );
+				const buttonMesh = new THREE.Mesh( geometry, material );
+				return buttonMesh;
+
+			}	
+
 
 			function init() {
 
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				//scene = new THREE.Scene();
-				//window.scene = scene;
-				//scene.background = new THREE.Color( 0x444444 );
-				scene = document.querySelector('a-scene').object3D
+				scene = new THREE.Scene();
+				window.scene = scene;
+				scene.background = new THREE.Color( 0x444444 );
+				//scene = document.querySelector('a-scene').object3D
 
 				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
 				camera.position.set( 0, 1.6, 3 );
@@ -318,6 +327,30 @@
 				floor.rotation.x = - Math.PI / 2;
 				floor.receiveShadow = true;
 				scene.add( floor );
+
+				const menuGeometry = new THREE.PlaneGeometry( 0.24, 0.5 );
+				const menuMaterial = new THREE.MeshPhongMaterial( {
+					opacity: 0,
+					transparent: true,
+				} );
+				const menuMesh = new THREE.Mesh( menuGeometry, menuMaterial );
+				menuMesh.position.set( 0.4, 1, - 1 );
+				menuMesh.rotation.y = - Math.PI / 12;
+				scene.add( menuMesh );
+	
+				const resetButton = makeButtonMesh( 0.2, 0.1, 0.01, 0x355c7d );
+				const resetButtonText = createText( 'reset', 0.06 );
+				resetButton.add( resetButtonText );
+				resetButtonText.position.set( 0, 0, 0.0051 );
+				resetButton.position.set( 0, - 0.06, 0 );
+				menuMesh.add( resetButton );
+	
+				const exitButton = makeButtonMesh( 0.2, 0.1, 0.01, 0xff0000 );
+				const exitButtonText = createText( 'exit', 0.06 );
+				exitButton.add( exitButtonText );
+				exitButtonText.position.set( 0, 0, 0.0051 );
+				exitButton.position.set( 0, - 0.18, 0 );
+				menuMesh.add( exitButton );
 
 				scene.add( new THREE.HemisphereLight( 0xbcbcbc, 0xa5a5a5, 3 ) );
 
@@ -362,29 +395,8 @@
 
 				hand1 = renderer.xr.getHand( 0 );
 				hand1.userData.currentHandModel = 0;
+				hand1.add( handModelFactory.createHandModel( hand1, 'mesh' ) );
 				scene.add( hand1 );
-
-				handModels.left = [
-					handModelFactory.createHandModel( hand1, 'boxes' ),
-					handModelFactory.createHandModel( hand1, 'spheres' ),
-					handModelFactory.createHandModel( hand1, 'mesh' )
-				];
-
-				for ( let i = 0; i < 3; i ++ ) {
-
-					const model = handModels.left[ i ];
-					model.visible = i == 0;
-					hand1.add( model );
-
-				}
-
-				hand1.addEventListener( 'pinchend', function () {
-
-					handModels.left[ this.userData.currentHandModel ].visible = false;
-					this.userData.currentHandModel = ( this.userData.currentHandModel + 1 ) % 3;
-					handModels.left[ this.userData.currentHandModel ].visible = true;
-
-				} );
 
 				// Hand 2
 
@@ -394,29 +406,8 @@
 
 				hand2 = renderer.xr.getHand( 1 );
 				hand2.userData.currentHandModel = 0;
+				hand2.add( handModelFactory.createHandModel( hand2, 'mesh' ) );
 				scene.add( hand2 );
-
-				handModels.right = [
-					handModelFactory.createHandModel( hand2, 'boxes' ),
-					handModelFactory.createHandModel( hand2, 'spheres' ),
-					handModelFactory.createHandModel( hand2, 'mesh' )
-				];
-
-				for ( let i = 0; i < 3; i ++ ) {
-
-					const model = handModels.right[ i ];
-					model.visible = i == 0;
-					hand2.add( model );
-
-				}
-
-				hand2.addEventListener( 'pinchend', function () {
-
-					handModels.right[ this.userData.currentHandModel ].visible = false;
-					this.userData.currentHandModel = ( this.userData.currentHandModel + 1 ) % 3;
-					handModels.right[ this.userData.currentHandModel ].visible = true;
-
-				} );
 
 				//
 
