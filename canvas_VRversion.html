@@ -808,15 +808,16 @@
 				                //if (Math.round(colorIndex) > (numOfColorCode-1)) {colorIndex = (numOfColorCode-1)}
 
 						const object = new THREE.Mesh( new THREE.SphereGeometry( 0.1, 32, 16 ), new THREE.MeshLambertMaterial( { color: 0xffffff } ) );
-						scene.add( object );
 						
-				                let colorStr = globalData.categoricalColorDict[element[globalData.curMarkerGene.Attribute]];
+						let colorStr = globalData.categoricalColorDict[element[globalData.curMarkerGene.Attribute]];
 						console.log(globalData.categoricalColorDict);
 						console.log(element[globalData.curMarkerGene.Attribute]);
 						console.log(globalData.curMarkerGene.Attribute);
 						console.log(globalData.categoricalColorDict[element[globalData.curMarkerGene.Attribute]]);
 						console.log(colorStr);
 						object.material.color.setHex(colorStr);
+						
+						scene.add( object );
 
 				                if (globalData.curStatus === 1) {
 				                    loader.getObjectFromID(globalData.cellData3D, element[globalData.idStr], globalData.idStr).then(target => {
