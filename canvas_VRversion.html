@@ -661,7 +661,7 @@
 				scene.background = new THREE.Color( 0x444444 );
 	
 				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
-				camera.position.set( 0, 0, -10 );
+				camera.position.set( 100, 100, 100 );
 	
 				scene.add( new THREE.HemisphereLight( 0xcccccc, 0x999999, 3 ) );
 	
@@ -726,7 +726,7 @@
 				const floor = new THREE.Mesh( floorGeometry, floorMaterial );
 				floor.rotation.x = - Math.PI / 2;
 				floor.receiveShadow = true;
-				scene.add( floor );
+				//scene.add( floor );
 	
 				const menuGeometry = new THREE.PlaneGeometry( 0.24, 0.5 );
 				const menuMaterial = new THREE.MeshPhongMaterial( {
