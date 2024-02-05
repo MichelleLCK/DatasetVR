@@ -661,13 +661,13 @@
 				scene.background = new THREE.Color( 0x444444 );
 	
 				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
-				camera.position.set( 75, 75, 250 );
+				camera.position.set( 0, 3, 6 );
 	
 				scene.add( new THREE.HemisphereLight( 0xcccccc, 0x999999, 3 ) );
 	
 				//const light = new THREE.DirectionalLight( 0xffffff, 3 );
 				const light = new THREE.Light( 0xffffff, 3 );
-				//light.position.set( 75, 75, 250 );
+				//light.position.set( 0, 6, 0 );
 				//light.castShadow = true;
 				//light.shadow.camera.top = 2;
 				//light.shadow.camera.bottom = - 2;
