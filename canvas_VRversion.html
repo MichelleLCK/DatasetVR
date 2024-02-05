@@ -777,23 +777,71 @@
 					.registerSystem( ButtonSystem )
 					.registerSystem( DraggableSystem )
 					.registerSystem( HandRaySystem, { handPointers: [ handPointer1, handPointer2 ] } );
-	
-				for ( let i = 0; i < 20; i ++ ) {
-				//data = globalData.cellData;
-				//for (let i = 0; i < data.length; i++) { 
-	
-					const object = new THREE.Mesh( new THREE.SphereGeometry( 0.1, 32, 16 ), new THREE.MeshLambertMaterial( { color: 0xffffff } ) );
-					scene.add( object );
-					//const geometry = new THREE.SphereGeometry( 15, 32, 16 ); 
-					//const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } ); 
-					//const sphere = new THREE.Mesh( geometry, material ); scene.add( sphere );
-	
-					const entity = world.createEntity();
-					entity.addComponent( Intersectable );
-					entity.addComponent( Randomizable );
-					entity.addComponent( Object3D, { object: object } );
-					entity.addComponent( Draggable );
-					console.log("Added a ball");
+
+				let numOfColorCode = globalData.colormapInfo[globalData.curColormap.Colourmap].num;
+
+			        let featureNorm
+			        if (globalData.featureMIN < 0) {
+			            featureNorm = numOfColorCode/(globalData.featureMAX - globalData.featureMIN);
+			        } else {
+			            featureNorm = numOfColorCode/globalData.featureMAX;
+			        }
+
+				//for ( let i = 0; i < 20; i ++ ) {
+				
+				data = globalData.cellData;
+				let numOfColorCode = globalData.colormapInfo[globalData.curColormap.Colourmap].num;
+				
+				for (let i = 0; i < data.length; i++) { 
+					data.forEach(element => {
+				                //let colorIndex;
+				                //if (globalData.isStr) {
+				                //    colorIndex = globalData.strToNumDict[element[globalData.curMarkerGene]] * featureNorm;
+				                //} else {
+				                //    if (featureMin < 0) {
+				                //        colorIndex = (element[globalData.curMarkerGene] - featureMin) * featureNorm;
+				                //    } else {
+				                //        colorIndex = element[globalData.curMarkerGene] * featureNorm;
+				                //    }
+				                //}
+				                //if (Math.round(colorIndex) > (numOfColorCode-1)) {colorIndex = (numOfColorCode-1)}
+
+						const object = new THREE.Mesh( new THREE.SphereGeometry( 0.1, 32, 16 ), new THREE.MeshLambertMaterial( { color: 0xffffff } ) );
+						scene.add( object );
+						
+				                colorStr = globalData.categoricalColorDict[element[globalData.curMarkerGene]];
+						object.material.color.setHex(colorStr);
+
+				                if (globalData.curStatus === 1) {
+				                    loader.getObjectFromID(globalData.cellData3D, element[globalData.idStr], globalData.idStr).then(target => {
+							object.position.x = target[globalData.curVisMethod.x]*globalData.scaleUp;
+							object.position.y = target[globalData.curVisMethod.y]*globalData.scaleUp;
+							object.position.z = target[globalData.curVisMethod.z]*globalData.scaleUp;
+				                    }, reject => {console.log(reject)})
+				                } else if (globalData.curStatus === 2) {
+				                    loader.getObjectFromID(globalData.cellData3D2, element[globalData.idStr], globalData.idStr).then(target => {
+							object.position.x = target[globalData.curVisMethod.x]*globalData.scaleUp;
+							object.position.y = target[globalData.curVisMethod.y]*globalData.scaleUp;
+							object.position.z = target[globalData.curVisMethod.z]*globalData.scaleUp;
+				                    }, reject => {console.log(reject)})
+				                } else {
+				                    object.position.x = element[globalData.curVisMethod.x]*globalData.scaleUp;
+				                    object.position.y = element[globalData.curVisMethod.y]*globalData.scaleUp;
+				                    object.position.z = element[globalData.curVisMethod.z]*globalData.scaleUp;
+				                }
+						
+						//const geometry = new THREE.SphereGeometry( 15, 32, 16 ); 
+						//const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } ); 
+						//const sphere = new THREE.Mesh( geometry, material ); scene.add( sphere );
+		
+						const entity = world.createEntity();
+						entity.addComponent( Intersectable );
+						entity.addComponent( Randomizable );
+						entity.addComponent( Object3D, { object: object } );
+						entity.addComponent( Draggable );
+						console.log("Added a ball");
+						
+				            })
 	
 				}
 	
