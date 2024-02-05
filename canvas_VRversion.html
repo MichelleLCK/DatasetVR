@@ -660,7 +660,7 @@
 				scene = new THREE.Scene();
 				scene.background = new THREE.Color( 0x444444 );
 	
-				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
+				camera = new THREE.PerspectiveCamera( 100, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.set( 0, 0, 0 );
 	
 				scene.add( new THREE.HemisphereLight( 0xcccccc, 0x999999, 3 ) );
@@ -820,18 +820,18 @@
 				                    loader.getObjectFromID(globalData.cellData3D, element[globalData.idStr], globalData.idStr).then(target => {
 							object.position.x = target[globalData.curVisMethod.x]*globalData.scaleUp*0.1+10;
 							object.position.y = target[globalData.curVisMethod.y]*globalData.scaleUp*0.1+10;
-							object.position.z = target[globalData.curVisMethod.z]*globalData.scaleUp*0.1+10;
+							object.position.z = target[globalData.curVisMethod.z]*globalData.scaleUp*0.1-10;
 				                    }, reject => {console.log(reject)})
 				                } else if (globalData.curStatus === 2) {
 				                    loader.getObjectFromID(globalData.cellData3D2, element[globalData.idStr], globalData.idStr).then(target => {
 							object.position.x = target[globalData.curVisMethod.x]*globalData.scaleUp*0.1+10;
 							object.position.y = target[globalData.curVisMethod.y]*globalData.scaleUp*0.1+10;
-							object.position.z = target[globalData.curVisMethod.z]*globalData.scaleUp*0.1+10;
+							object.position.z = target[globalData.curVisMethod.z]*globalData.scaleUp*0.1-10;
 				                    }, reject => {console.log(reject)})
 				                } else {
 				                    object.position.x = element[globalData.curVisMethod.x]*globalData.scaleUp*0.1+10;
 				                    object.position.y = element[globalData.curVisMethod.y]*globalData.scaleUp*0.1+10;
-				                    object.position.z = element[globalData.curVisMethod.z]*globalData.scaleUp*0.1+10;
+				                    object.position.z = element[globalData.curVisMethod.z]*globalData.scaleUp*0.1-10;
 				                }
 						
 						//const geometry = new THREE.SphereGeometry( 15, 32, 16 ); 
