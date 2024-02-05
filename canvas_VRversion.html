@@ -661,7 +661,7 @@
 				scene.background = new THREE.Color( 0x444444 );
 	
 				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
-				camera.position.set( 75, 75, 250 );
+				camera.position.set( 1, 1, 6 );
 	
 				scene.add( new THREE.HemisphereLight( 0xcccccc, 0x999999, 3 ) );
 	
@@ -721,7 +721,7 @@
 	
 	
 				// setup objects in scene and entities
-				const floorGeometry = new THREE.PlaneGeometry( 250, 250 );
+				const floorGeometry = new THREE.PlaneGeometry( 10, 10 );
 				const floorMaterial = new THREE.MeshPhongMaterial( { color: 0x222222 } );
 				const floor = new THREE.Mesh( floorGeometry, floorMaterial );
 				floor.rotation.x = - Math.PI / 2;
@@ -818,29 +818,29 @@
 
 				                if (globalData.curStatus === 1) {
 				                    loader.getObjectFromID(globalData.cellData3D, element[globalData.idStr], globalData.idStr).then(target => {
-							object.position.x = target[globalData.curVisMethod.x]*globalData.scaleUp;
-							object.position.y = target[globalData.curVisMethod.y]*globalData.scaleUp;
-							object.position.z = target[globalData.curVisMethod.z]*globalData.scaleUp;
-							console.log(target[globalData.curVisMethod.x]*globalData.scaleUp);
-							console.log(target[globalData.curVisMethod.y]*globalData.scaleUp);
-							console.log(target[globalData.curVisMethod.z]*globalData.scaleUp);
+							object.position.x = target[globalData.curVisMethod.x]*globalData.scaleUp*0.01;
+							object.position.y = target[globalData.curVisMethod.y]*globalData.scaleUp*0.01;
+							object.position.z = target[globalData.curVisMethod.z]*globalData.scaleUp*0.01;
+							console.log(target[globalData.curVisMethod.x]*globalData.scaleUp*0.01);
+							console.log(target[globalData.curVisMethod.y]*globalData.scaleUp*0.01);
+							console.log(target[globalData.curVisMethod.z]*globalData.scaleUp*0.01);
 				                    }, reject => {console.log(reject)})
 				                } else if (globalData.curStatus === 2) {
 				                    loader.getObjectFromID(globalData.cellData3D2, element[globalData.idStr], globalData.idStr).then(target => {
-							object.position.x = target[globalData.curVisMethod.x]*globalData.scaleUp;
-							object.position.y = target[globalData.curVisMethod.y]*globalData.scaleUp;
-							object.position.z = target[globalData.curVisMethod.z]*globalData.scaleUp;
-							console.log(target[globalData.curVisMethod.x]*globalData.scaleUp);
-							console.log(target[globalData.curVisMethod.y]*globalData.scaleUp);
-							console.log(target[globalData.curVisMethod.z]*globalData.scaleUp);
+							object.position.x = target[globalData.curVisMethod.x]*globalData.scaleUp*0.01;
+							object.position.y = target[globalData.curVisMethod.y]*globalData.scaleUp*0.01;
+							object.position.z = target[globalData.curVisMethod.z]*globalData.scaleUp*0.01;
+							console.log(target[globalData.curVisMethod.x]*globalData.scaleUp*0.01);
+							console.log(target[globalData.curVisMethod.y]*globalData.scaleUp*0.01);
+							console.log(target[globalData.curVisMethod.z]*globalData.scaleUp*0.01);
 				                    }, reject => {console.log(reject)})
 				                } else {
-				                    object.position.x = element[globalData.curVisMethod.x]*globalData.scaleUp;
-				                    object.position.y = element[globalData.curVisMethod.y]*globalData.scaleUp;
-				                    object.position.z = element[globalData.curVisMethod.z]*globalData.scaleUp;
-				                    console.log(element[globalData.curVisMethod.x]*globalData.scaleUp);
-				                    console.log(element[globalData.curVisMethod.y]*globalData.scaleUp);
-				                    console.log(element[globalData.curVisMethod.z]*globalData.scaleUp);
+				                    object.position.x = element[globalData.curVisMethod.x]*globalData.scaleUp*0.01;
+				                    object.position.y = element[globalData.curVisMethod.y]*globalData.scaleUp*0.01;
+				                    object.position.z = element[globalData.curVisMethod.z]*globalData.scaleUp*0.01;
+				                    console.log(element[globalData.curVisMethod.x]*globalData.scaleUp*0.01);
+				                    console.log(element[globalData.curVisMethod.y]*globalData.scaleUp*0.01);
+				                    console.log(element[globalData.curVisMethod.z]*globalData.scaleUp*0.01);
 				                }
 						
 						//const geometry = new THREE.SphereGeometry( 15, 32, 16 ); 
