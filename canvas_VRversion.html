@@ -791,7 +791,7 @@
 				
 				let data = globalData.cellData;
 				
-				for (let i = 0; i < data.length; i++) { 
+				for (let i = 0; i < globalData.cellData.length; i++) { 
 					data.forEach(element => {
 				                //let colorIndex;
 				                //if (globalData.isStr) {
@@ -838,7 +838,7 @@
 						entity.addComponent( Randomizable );
 						entity.addComponent( Object3D, { object: object } );
 						entity.addComponent( Draggable );
-						//console.log("Added a ball");
+						console.log("Added a ball");
 						
 				            })
 	
