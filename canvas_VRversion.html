@@ -778,19 +778,18 @@
 					.registerSystem( DraggableSystem )
 					.registerSystem( HandRaySystem, { handPointers: [ handPointer1, handPointer2 ] } );
 
-				let numOfColorCode = globalData.colormapInfo[globalData.curColormap.Colourmap].num;
+				//let numOfColorCode = globalData.colormapInfo[globalData.curColormap.Colourmap].num;
 
-			        let featureNorm
-			        if (globalData.featureMIN < 0) {
-			            featureNorm = numOfColorCode/(globalData.featureMAX - globalData.featureMIN);
-			        } else {
-			            featureNorm = numOfColorCode/globalData.featureMAX;
-			        }
+			        //let featureNorm
+			        //if (globalData.featureMIN < 0) {
+			        //    featureNorm = numOfColorCode/(globalData.featureMAX - globalData.featureMIN);
+			        //} else {
+			        //    featureNorm = numOfColorCode/globalData.featureMAX;
+			        //}
 
 				//for ( let i = 0; i < 20; i ++ ) {
 				
 				data = globalData.cellData;
-				let numOfColorCode = globalData.colormapInfo[globalData.curColormap.Colourmap].num;
 				
 				for (let i = 0; i < data.length; i++) { 
 					data.forEach(element => {
