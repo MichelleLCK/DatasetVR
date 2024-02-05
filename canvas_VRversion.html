@@ -665,15 +665,15 @@
 	
 				scene.add( new THREE.HemisphereLight( 0xcccccc, 0x999999, 3 ) );
 	
-				const light = new THREE.DirectionalLight( 0xffffff, 3 );
-				//const light = new THREE.Light( 0xffffff, 3 );
-				light.position.set( 0, 6, 0 );
-				light.castShadow = true;
-				light.shadow.camera.top = 2;
-				light.shadow.camera.bottom = - 2;
-				light.shadow.camera.right = 2;
-				light.shadow.camera.left = - 2;
-				light.shadow.mapSize.set( 4096, 4096 );
+				//const light = new THREE.DirectionalLight( 0xffffff, 3 );
+				const light = new THREE.Light( 0xffffff, 3 );
+				//light.position.set( 0, 6, 0 );
+				//light.castShadow = true;
+				//light.shadow.camera.top = 2;
+				//light.shadow.camera.bottom = - 2;
+				//light.shadow.camera.right = 2;
+				//light.shadow.camera.left = - 2;
+				//light.shadow.mapSize.set( 4096, 4096 );
 				scene.add( light );
 	
 				renderer = new THREE.WebGLRenderer( { antialias: true } );
@@ -815,7 +815,7 @@
 						console.log(globalData.curMarkerGene.Attribute);
 						console.log(globalData.categoricalColorDict[element[globalData.curMarkerGene.Attribute]]);
 						console.log(colorStr);
-						object.material.color.setHex(colorStr);
+						//object.material.color.setHex(colorStr);
 						
 						scene.add( object );
 
