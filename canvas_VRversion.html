@@ -593,21 +593,21 @@
 
 					const object = entity.getComponent( Object3D ).object;
 
-					object.material.color.setHex( Math.random() * 0xffffff );
+					//object.material.color.setHex( Math.random() * 0xffffff );
 
-					object.position.x = Math.random() * 2 - 1;
-					object.position.y = Math.random() * 2;
-					object.position.z = Math.random() * 2 - 1;
+					//object.position.x = Math.random() * 2 - 1;
+					//object.position.y = Math.random() * 2;
+					//object.position.z = Math.random() * 2 - 1;
 
-					object.rotation.x = Math.random() * 2 * Math.PI;
+					//object.rotation.x = Math.random() * 2 * Math.PI;
 					object.rotation.y = Math.random() * 2 * Math.PI;
 					object.rotation.z = Math.random() * 2 * Math.PI;
 
-					object.scale.x = Math.random() + 0.5;
-					object.scale.y = Math.random() + 0.5;
-					object.scale.z = Math.random() + 0.5;
+					//object.scale.x = Math.random() + 0.5;
+					//object.scale.y = Math.random() + 0.5;
+					//object.scale.z = Math.random() + 0.5;
 					this.needRandomizing = false;
-					console.log("random ball");
+					//console.log("random ball");
 
 				} );
 
@@ -835,7 +835,7 @@
 		
 						const entity = world.createEntity();
 						entity.addComponent( Intersectable );
-						//entity.addComponent( Randomizable );
+						entity.addComponent( Randomizable );
 						entity.addComponent( Object3D, { object: object } );
 						entity.addComponent( Draggable );
 						//console.log("Added a ball");
