@@ -326,6 +326,7 @@ Loader.prototype = {
         }
         globalData.featureMAX = featureMax;
         globalData.featureMIN = featureMin;
+        globalData.strToNumDict = strToNumDict;
         document.getElementById('colormapMAX').innerText = "MAX: " + globalData.featureMAX.toFixed(2);
         document.getElementById('colormapMIN').innerText = "MIN: " + globalData.featureMIN.toFixed(2);
         console.log('max value: ', globalData.featureMAX);
