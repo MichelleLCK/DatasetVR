@@ -808,7 +808,7 @@
 						const object = new THREE.Mesh( new THREE.SphereGeometry( 0.1, 32, 16 ), new THREE.MeshLambertMaterial( { color: 0xffffff } ) );
 						scene.add( object );
 						
-				                colorStr = globalData.categoricalColorDict[element[globalData.curMarkerGene]];
+				                let colorStr = globalData.categoricalColorDict[element[globalData.curMarkerGene]];
 						object.material.color.setHex(colorStr);
 
 				                if (globalData.curStatus === 1) {
