@@ -727,7 +727,28 @@
 				floor.rotation.x = - Math.PI / 2;
 				floor.receiveShadow = true;
 				//scene.add( floor );
-	
+
+				room = new THREE.LineSegments(
+					new BoxLineGeometry( 6, 6, 6, 10, 10, 10 ).translate( 0, 3, 0 ),
+					new THREE.LineBasicMaterial( { color: 0xbcbcbc } )
+				);
+				scene.add( room );
+
+				scene.add( new THREE.HemisphereLight( 0xa5a5a5, 0x898989, 3 ) );
+
+
+				marker = new THREE.Mesh(
+					new THREE.CircleGeometry( 0.25, 32 ).rotateX( - Math.PI / 2 ),
+					new THREE.MeshBasicMaterial( { color: 0xbcbcbc } )
+				);
+				scene.add( marker );
+
+				floor = new THREE.Mesh(
+					new THREE.PlaneGeometry( 4.8, 4.8, 2, 2 ).rotateX( - Math.PI / 2 ),
+					new THREE.MeshBasicMaterial( { color: 0xbcbcbc, transparent: true, opacity: 0.25 } )
+				);
+				scene.add( floor );
+
 				const menuGeometry = new THREE.PlaneGeometry( 0.24, 0.5 );
 				const menuMaterial = new THREE.MeshPhongMaterial( {
 					opacity: 0,
