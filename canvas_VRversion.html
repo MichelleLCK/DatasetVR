@@ -731,7 +731,7 @@
 				//scene.add( floor );
 
 				room = new THREE.LineSegments(
-					new BoxLineGeometry( 6, 6, 6, 10, 10, 10 ).translate( 0, 3, 0 ),
+					new BoxLineGeometry( 50, 50, 50,100, 100, 100 ).translate( 0, 3, 0 ),
 					new THREE.LineBasicMaterial( { color: 0xbcbcbc } )
 				);
 				scene.add( room );
@@ -740,13 +740,13 @@
 
 
 				marker = new THREE.Mesh(
-					new THREE.CircleGeometry( 0.25, 32 ).rotateX( - Math.PI / 2 ),
+					new THREE.CircleGeometry( 0.5, 64 ).rotateX( - Math.PI / 2 ),
 					new THREE.MeshBasicMaterial( { color: 0xbcbcbc } )
 				);
 				scene.add( marker );
 
 				floor = new THREE.Mesh(
-					new THREE.PlaneGeometry( 4.8, 4.8, 2, 2 ).rotateX( - Math.PI / 2 ),
+					new THREE.PlaneGeometry( 45, 45, 20, 20 ).rotateX( - Math.PI / 2 ),
 					new THREE.MeshBasicMaterial( { color: 0xbcbcbc, transparent: true, opacity: 0.25 } )
 				);
 				scene.add( floor );
