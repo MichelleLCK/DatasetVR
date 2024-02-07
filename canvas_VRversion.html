@@ -419,9 +419,18 @@
 						}
 
 					} );
+					const geometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
+
+					let line = new THREE.Line( geometry );
+					line.name = 'line';
+					hp.add( line.clone() );
+					line.scale.z = null;
 					if ( distance ) {
 
 						hp.setCursor( distance );
+
+						line.scale.z = distance;
+
 						if ( intersectingEntity.hasComponent( Button ) ) {
 
 							const button = intersectingEntity.getMutableComponent( Button );
@@ -470,6 +479,7 @@
 					} else {
 
 						hp.setCursor( 1.5 );
+						line.scale.z = 1.5;
 
 					}
 
@@ -893,14 +903,14 @@
 				itEntity.addComponent( HandsInstructionText );
 				itEntity.addComponent( Object3D, { object: instructionText } );
 
-				const geometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
+				//const geometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
 
-				const line = new THREE.Line( geometry );
-				line.name = 'line';
-				line.scale.z = 1.5;
+				//const line = new THREE.Line( geometry );
+				//line.name = 'line';
+				//line.scale.z = 1.5;
 
-				controller1.add( line.clone() );
-				controller2.add( line.clone() );
+				//controller1.add( line.clone() );
+				//controller2.add( line.clone() );
 	
 				window.addEventListener( 'resize', onWindowResize );
 	
