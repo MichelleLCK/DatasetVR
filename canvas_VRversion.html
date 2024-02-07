@@ -818,24 +818,8 @@
 				//for (let i = 0; i < globalData.cellData.length; i++) { 
 					//console.log(globalData.cellData.length);
 					data.forEach(element => {
-				                //let colorIndex;
-				                //if (globalData.isStr) {
-				                //    colorIndex = globalData.strToNumDict[element[globalData.curMarkerGene.Attribute]] * featureNorm;
-				                //} else {
-				                //    if (featureMin < 0) {
-				                //        colorIndex = (element[globalData.curMarkerGene.Attribute] - featureMin) * featureNorm;
-				                //    } else {
-				                //        colorIndex = element[globalData.curMarkerGene.Attribute] * featureNorm;
-				                //    }
-				                //}
-				                //if (Math.round(colorIndex) > (numOfColorCode-1)) {colorIndex = (numOfColorCode-1)}
-
-						//const object = new THREE.Mesh( new THREE.SphereGeometry( 0.1, 32, 16 ), new THREE.MeshLambertMaterial( { color: 0xffffff } ) );
-						
 						let colorStr = globalData.categoricalColorDict[element[globalData.curMarkerGene.Attribute]];
 						const object = new THREE.Mesh( new THREE.SphereGeometry( 0.1, 32, 16 ), new THREE.MeshLambertMaterial( { color: colorStr } ) );
-						
-						//object.material.color.setHex(colorStr);
 						
 						scene.add( object );
 
@@ -908,6 +892,15 @@
 				const itEntity = world.createEntity();
 				itEntity.addComponent( HandsInstructionText );
 				itEntity.addComponent( Object3D, { object: instructionText } );
+
+				const geometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
+
+				const line = new THREE.Line( geometry );
+				line.name = 'line';
+				line.scale.z = 5;
+
+				controller1.add( line.clone() );
+				controller2.add( line.clone() );
 	
 				window.addEventListener( 'resize', onWindowResize );
 	
