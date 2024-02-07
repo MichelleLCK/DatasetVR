@@ -419,12 +419,13 @@
 						}
 
 					} );
-					const geometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
+					//const geometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
 
-					const line = new THREE.Line( geometry );
-					line.name = 'line';
-					line.scale.z = 100;
-					hp.add( line.clone() );
+					//const line = new THREE.Line( geometry );
+					const line = entity.getComponent( Object3D ).line;
+					//line.name = 'line';
+					//line.scale.z = 100;
+					//hp.add( line.clone() );
 					
 					if ( distance ) {
 
@@ -866,6 +867,16 @@
 				            })
 	
 				//}
+				const geometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
+
+				const line = new THREE.Line( geometry );
+				line.name = 'line';
+				controller1.add( line.clone() );
+				controller2.add( line.clone() );
+				const entity = world.createEntity();
+				entity.addComponent( Intersectable );
+				entity.addComponent( Object3D, { line: line } );
+
 	
 				const menuEntity = world.createEntity();
 				menuEntity.addComponent( Intersectable );
