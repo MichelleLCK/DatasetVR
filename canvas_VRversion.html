@@ -740,13 +740,13 @@
 
 
 				marker = new THREE.Mesh(
-					new THREE.CircleGeometry( 0.2, 32 ).rotateX( - Math.PI / 2 ),
+					new THREE.CircleGeometry( 0.25, 32 ).rotateX( - Math.PI / 2 ),
 					new THREE.MeshBasicMaterial( { color: 0xbcbcbc } )
 				);
 				scene.add( marker );
 
 				floor = new THREE.Mesh(
-					new THREE.PlaneGeometry( 50, 50, 10, 10 ).rotateX( - Math.PI / 2 ),
+					new THREE.PlaneGeometry( 30, 30, 10, 10 ).rotateX( - Math.PI / 2 ),
 					new THREE.MeshBasicMaterial( { color: 0xbcbcbc, transparent: true, opacity: 0.25 } )
 				);
 				scene.add( floor );
