@@ -403,6 +403,7 @@
 
 					let distance = null;
 					let intersectingEntity = null;
+					hp.raycaster = true;
 					this.queries.intersectable.results.forEach( entity => {
 
 						const object = entity.getComponent( Object3D ).object;
@@ -422,7 +423,7 @@
 					//const geometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
 
 					//const line = new THREE.Line( geometry );
-					const line = entity.getComponent( Object3D ).line;
+					//const line = entity.getComponent( Object3D ).line;
 					//line.name = 'line';
 					//line.scale.z = 100;
 					//hp.add( line.clone() );
@@ -431,7 +432,7 @@
 
 						hp.setCursor( distance );
 
-						line.scale.z = distance;
+						//line.scale.z = distance;
 
 						if ( intersectingEntity.hasComponent( Button ) ) {
 
@@ -481,7 +482,7 @@
 					} else {
 
 						hp.setCursor( 1.5 );
-						line.scale.z = 1.5;
+						//line.scale.z = 1.5;
 
 					}
 
@@ -813,69 +814,54 @@
 					.registerSystem( ButtonSystem )
 					.registerSystem( DraggableSystem )
 					.registerSystem( HandRaySystem, { handPointers: [ handPointer1, handPointer2 ] } );
-
-				//let numOfColorCode = globalData.colormapInfo[globalData.curColormap.Colourmap].num;
-
-			        //let featureNorm
-			        //if (globalData.featureMIN < 0) {
-			        //    featureNorm = numOfColorCode/(globalData.featureMAX - globalData.featureMIN);
-			        //} else {
-			        //    featureNorm = numOfColorCode/globalData.featureMAX;
-			        //}
-
-				//for ( let i = 0; i < 20; i ++ ) {
 				
 				let data = globalData.cellData;
-				
-				//for (let i = 0; i < globalData.cellData.length; i++) { 
-					//console.log(globalData.cellData.length);
-					data.forEach(element => {
-						let colorStr = globalData.categoricalColorDict[element[globalData.curMarkerGene.Attribute]];
-						const object = new THREE.Mesh( new THREE.SphereGeometry( 0.1, 32, 16 ), new THREE.MeshLambertMaterial( { color: colorStr } ) );
-						
-						scene.add( object );
+				data.forEach(element => {
+					let colorStr = globalData.categoricalColorDict[element[globalData.curMarkerGene.Attribute]];
+					const object = new THREE.Mesh( new THREE.SphereGeometry( 0.1, 32, 16 ), new THREE.MeshLambertMaterial( { color: colorStr } ) );
+					
+					scene.add( object );
 
-				                if (globalData.curStatus === 1) {
-				                    loader.getObjectFromID(globalData.cellData3D, element[globalData.idStr], globalData.idStr).then(target => {
-							object.position.x = target[globalData.curVisMethod.x]*globalData.scaleUp*0.1+2;
-							object.position.y = target[globalData.curVisMethod.y]*globalData.scaleUp*0.1+3;
-							object.position.z = target[globalData.curVisMethod.z]*globalData.scaleUp*0.1-10;
-				                    }, reject => {console.log(reject)})
-				                } else if (globalData.curStatus === 2) {
-				                    loader.getObjectFromID(globalData.cellData3D2, element[globalData.idStr], globalData.idStr).then(target => {
-							object.position.x = target[globalData.curVisMethod.x]*globalData.scaleUp*0.1+2;
-							object.position.y = target[globalData.curVisMethod.y]*globalData.scaleUp*0.1+3;
-							object.position.z = target[globalData.curVisMethod.z]*globalData.scaleUp*0.1-10;
-				                    }, reject => {console.log(reject)})
-				                } else {
-				                    object.position.x = element[globalData.curVisMethod.x]*globalData.scaleUp*0.1+2;
-				                    object.position.y = element[globalData.curVisMethod.y]*globalData.scaleUp*0.1+3;
-				                    object.position.z = element[globalData.curVisMethod.z]*globalData.scaleUp*0.1-10;
-				                }
-						
-						//const geometry = new THREE.SphereGeometry( 15, 32, 16 ); 
-						//const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } ); 
-						//const sphere = new THREE.Mesh( geometry, material ); scene.add( sphere );
-		
-						const entity = world.createEntity();
-						entity.addComponent( Intersectable );
-						entity.addComponent( Randomizable );
-						entity.addComponent( Object3D, { object: object } );
-						entity.addComponent( Draggable );
-						console.log("Added a ball");
-						
-				            })
+					if (globalData.curStatus === 1) {
+					    loader.getObjectFromID(globalData.cellData3D, element[globalData.idStr], globalData.idStr).then(target => {
+						object.position.x = target[globalData.curVisMethod.x]*globalData.scaleUp*0.1+2;
+						object.position.y = target[globalData.curVisMethod.y]*globalData.scaleUp*0.1+3;
+						object.position.z = target[globalData.curVisMethod.z]*globalData.scaleUp*0.1-10;
+					    }, reject => {console.log(reject)})
+					} else if (globalData.curStatus === 2) {
+					    loader.getObjectFromID(globalData.cellData3D2, element[globalData.idStr], globalData.idStr).then(target => {
+						object.position.x = target[globalData.curVisMethod.x]*globalData.scaleUp*0.1+2;
+						object.position.y = target[globalData.curVisMethod.y]*globalData.scaleUp*0.1+3;
+						object.position.z = target[globalData.curVisMethod.z]*globalData.scaleUp*0.1-10;
+					    }, reject => {console.log(reject)})
+					} else {
+					    object.position.x = element[globalData.curVisMethod.x]*globalData.scaleUp*0.1+2;
+					    object.position.y = element[globalData.curVisMethod.y]*globalData.scaleUp*0.1+3;
+					    object.position.z = element[globalData.curVisMethod.z]*globalData.scaleUp*0.1-10;
+					}
+					
+					//const geometry = new THREE.SphereGeometry( 15, 32, 16 ); 
+					//const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } ); 
+					//const sphere = new THREE.Mesh( geometry, material ); scene.add( sphere );
 	
-				//}
-				const geometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
+					const entity = world.createEntity();
+					entity.addComponent( Intersectable );
+					entity.addComponent( Randomizable );
+					entity.addComponent( Object3D, { object: object } );
+					entity.addComponent( Draggable );
+					console.log("Added a ball");
+					
+				    })
+	
+				//const geometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
 
-				const line = new THREE.Line( geometry );
-				line.name = 'line';
-				controller1.add( line.clone() );
-				controller2.add( line.clone() );
-				const entity = world.createEntity();
-				entity.addComponent( Intersectable );
-				entity.addComponent( Object3D, { line: line } );
+				//const line = new THREE.Line( geometry );
+				//line.name = 'line';
+				//controller1.add( line.clone() );
+				//controller2.add( line.clone() );
+				//const rayEntity = world.createEntity();
+				//entity.addComponent( Intersectable );
+				//entity.addComponent( Object3D, { object: line } );
 
 	
 				const menuEntity = world.createEntity();
