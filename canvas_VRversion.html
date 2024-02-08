@@ -394,6 +394,7 @@
 			init( attributes ) {
 
 				this.handPointers = attributes.handPointers;
+				//this.controllers = attributes.controllers;
 
 			}
 
@@ -714,6 +715,20 @@
 	
 				const controller2 = renderer.xr.getController( 1 );
 				scene.add( controller2 );
+
+				const geometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
+
+				const line = new THREE.Line( geometry );
+				line.name = 'line';
+				line.scale.z = 1.5;
+
+				//handPointer1.add( line.clone() );
+				//handPointer2.add( line.clone() );
+
+				controller1.add( line.clone() );
+				controller2.add( line.clone() );
+				//console.log(controller1.children);
+				//console.log(controller2.children);
 	
 				const controllerModelFactory = new XRControllerModelFactory();
 	
@@ -906,20 +921,6 @@
 				const itEntity = world.createEntity();
 				itEntity.addComponent( HandsInstructionText );
 				itEntity.addComponent( Object3D, { object: instructionText } );
-
-				const geometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
-
-				const line = new THREE.Line( geometry );
-				line.name = 'line';
-				line.scale.z = 1.5;
-
-				//handPointer1.add( line.clone() );
-				//handPointer2.add( line.clone() );
-
-				controller1.add( line.clone() );
-				controller2.add( line.clone() );
-				console.log(controller1.children);
-				console.log(controller2.children);
 	
 				window.addEventListener( 'resize', onWindowResize );
 	
