@@ -422,18 +422,19 @@
 					} );
 					//const geometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
 
-					//const line = new THREE.Line( geometry );
+					const geometry = new THREE.BufferGeometry().setFromPoints( [ hp.raycaster.origin, hp.raycaster.direction ] );
+					const line = new THREE.Line( geometry );
 					//const line = entity.getComponent( Object3D ).line;
-					//line.name = 'line';
+					line.name = 'line';
 					//line.scale.z = 100;
-					let line = hp.constructor.raycaster.ray.clone();
-					hp.add( line.clone() );
+					//let line = hp.constructor.raycaster.ray.clone();
+					hp.add( line );
 					
 					if ( distance ) {
 
 						hp.setCursor( distance );
 
-						//line.scale.z = distance;
+						line.scale.z = distance;
 
 						if ( intersectingEntity.hasComponent( Button ) ) {
 
@@ -483,7 +484,7 @@
 					} else {
 
 						hp.setCursor( 1.5 );
-						//line.scale.z = 1.5;
+						line.scale.z = 1.5;
 
 					}
 
