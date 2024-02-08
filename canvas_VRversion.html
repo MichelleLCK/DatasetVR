@@ -422,8 +422,8 @@
 					} );
 					//const geometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
 
-					const geometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
-					var line = new THREE.Line( geometry );
+					//const geometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
+					//var line = new THREE.Line( geometry );
 					//const line = entity.getComponent( Object3D ).line;
 					//line.name = 'line';
 					//line.scale.z = 100;
@@ -431,14 +431,14 @@
 					//let raycaster = hp.raycaster;
 					//let line = raycaster['ray'];
 					//const vector = hp.raycaster['origin'];
-					line.name = 'line';
-					hp.add( line );
+					//line.name = 'line';
+					//hp.add( line );
 					
 					if ( distance ) {
 
 						hp.setCursor( distance );
 
-						line.scale.z = distance;
+						//line.scale.z = distance;
 
 						if ( intersectingEntity.hasComponent( Button ) ) {
 
@@ -488,7 +488,7 @@
 					} else {
 
 						hp.setCursor( 1.5 );
-						line.scale.z = 1.5;
+						//line.scale.z = 1.5;
 
 					}
 
@@ -907,11 +907,14 @@
 				itEntity.addComponent( HandsInstructionText );
 				itEntity.addComponent( Object3D, { object: instructionText } );
 
-				//const geometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
+				const geometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
 
-				//const line = new THREE.Line( geometry );
-				//line.name = 'line';
-				//line.scale.z = 1.5;
+				const line = new THREE.Line( geometry );
+				line.name = 'line';
+				line.scale.z = 1.5;
+
+				handPointer1.add( line.clone() );
+				handPointer2.add( line.clone() );
 
 				//controller1.add( line.clone() );
 				//controller2.add( line.clone() );
