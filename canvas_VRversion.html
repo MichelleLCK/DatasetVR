@@ -422,7 +422,7 @@
 					} );
 					//const geometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
 
-					const geometry = new THREE.BufferGeometry().setFromPoints( [ hp.raycaster.origin, hp.raycaster.direction ] );
+					const geometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
 					const line = new THREE.Line( geometry );
 					//const line = entity.getComponent( Object3D ).line;
 					line.name = 'line';
