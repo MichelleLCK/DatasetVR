@@ -426,7 +426,7 @@
 					//const line = entity.getComponent( Object3D ).line;
 					//line.name = 'line';
 					//line.scale.z = 100;
-					let line = hp.raycaster.ray.clone();
+					let line = hp.constructor.raycaster.ray.clone();
 					hp.add( line.clone() );
 					
 					if ( distance ) {
