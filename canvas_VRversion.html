@@ -403,7 +403,7 @@
 
 					let distance = null;
 					let intersectingEntity = null;
-					hp.raycaster = true;
+					//hp.raycaster = true;
 					this.queries.intersectable.results.forEach( entity => {
 
 						const object = entity.getComponent( Object3D ).object;
@@ -426,7 +426,8 @@
 					//const line = entity.getComponent( Object3D ).line;
 					//line.name = 'line';
 					//line.scale.z = 100;
-					//hp.add( line.clone() );
+					let line = hp.raycaster.ray.clone();
+					hp.add( line.clone() );
 					
 					if ( distance ) {
 
