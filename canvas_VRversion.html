@@ -401,6 +401,7 @@
 			execute( /*delta, time*/ ) {
 
 				this.handPointers.forEach( hp => {
+					console.log(hp.children);
 
 					let distance = null;
 					let intersectingEntity = null;
@@ -740,6 +741,7 @@
 				const hand1 = renderer.xr.getHand( 0 );
 				hand1.add( new OculusHandModel( hand1 ) );
 				const handPointer1 = new OculusHandPointerModel( hand1, controller1 );
+				handPointer1.add( controller1 );
 				hand1.add( handPointer1 );
 	
 				scene.add( hand1 );
@@ -752,6 +754,7 @@
 				const hand2 = renderer.xr.getHand( 1 );
 				hand2.add( new OculusHandModel( hand2 ) );
 				const handPointer2 = new OculusHandPointerModel( hand2, controller2 );
+				handPointer2.add( controller2 );
 				hand2.add( handPointer2 );
 				scene.add( hand2 );
 	
