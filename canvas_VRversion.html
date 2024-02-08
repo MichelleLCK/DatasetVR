@@ -429,7 +429,7 @@
 					//line.scale.z = 100;
 					//let line = hp.constructor.raycaster.ray.clone();
 					let raycaster = hp.raycaster;
-					let line = raycaster.ray.clone();
+					let line = raycaster['ray'];
 					line.name = 'line';
 					hp.add( line );
 					
