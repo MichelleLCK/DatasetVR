@@ -403,10 +403,10 @@
 				this.handPointers.forEach( hp => {
 					let controller = hp.children[0];
 					let line = controller.children[0];
-					console.log("HP Children");
-					console.log(hp.children);
-					console.log("Controller Children");
-					console.log(controller.children[0]);
+					//console.log("HP Children");
+					//console.log(hp.children);
+					//console.log("Controller Children");
+					//console.log(controller.children[0]);
 
 					let distance = null;
 					let intersectingEntity = null;
@@ -445,7 +445,7 @@
 
 						hp.setCursor( distance );
 
-						//line.scale.z = distance;
+						line.scale.z = distance;
 
 						if ( intersectingEntity.hasComponent( Button ) ) {
 
@@ -495,7 +495,7 @@
 					} else {
 
 						hp.setCursor( 1.5 );
-						//line.scale.z = 1.5;
+						line.scale.z = 1.5;
 
 					}
 
