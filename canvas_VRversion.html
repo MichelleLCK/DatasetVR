@@ -401,7 +401,12 @@
 			execute( /*delta, time*/ ) {
 
 				this.handPointers.forEach( hp => {
+					let controller = hp.children[0];
+					let line = controller.children[0];
+					console.log("HP Children");
 					console.log(hp.children);
+					console.log("Controller Children");
+					console.log(controller.children[0]);
 
 					let distance = null;
 					let intersectingEntity = null;
