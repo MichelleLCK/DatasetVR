@@ -425,11 +425,12 @@
 					const geometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
 					//const line = new THREE.Line( geometry );
 					//const line = entity.getComponent( Object3D ).line;
-					line.name = 'line';
+					//line.name = 'line';
 					//line.scale.z = 100;
 					//let line = hp.constructor.raycaster.ray.clone();
 					let raycaster = hp.raycaster;
 					let line = raycaster.ray.clone();
+					line.name = 'line';
 					hp.add( line );
 					
 					if ( distance ) {
