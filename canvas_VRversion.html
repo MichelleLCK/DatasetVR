@@ -721,10 +721,10 @@
 				// controllers
 				
 				const controller1 = renderer.xr.getController( 0 );
-				//scene.add( controller1 );
+				scene.add( controller1 );
 	
 				const controller2 = renderer.xr.getController( 1 );
-				//scene.add( controller2 );
+				scene.add( controller2 );
 
 				const geometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
 
@@ -776,7 +776,7 @@
 					this.remove( this.children[ 1 ] );
 
 				} );
-				scene.add( controller1 );
+				//scene.add( controller1 );
 
 				//controller2 = renderer.xr.getController( 1 );
 				controller2.addEventListener( 'selectstart', onSelectStart );
@@ -791,7 +791,7 @@
 					this.remove( this.children[ 1 ] );
 
 				} );
-				scene.add( controller2 );
+				//scene.add( controller2 );
 	
 				const controllerModelFactory = new XRControllerModelFactory();
 	
