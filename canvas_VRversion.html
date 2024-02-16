@@ -719,26 +719,6 @@
 				document.body.appendChild( VRButton.createButton( renderer ) );
 	
 				// controllers
-				
-				const controller1 = renderer.xr.getController( 0 );
-				scene.add( controller1 );
-	
-				const controller2 = renderer.xr.getController( 1 );
-				scene.add( controller2 );
-
-				const geometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
-
-				const line = new THREE.Line( geometry );
-				line.name = 'line';
-				line.scale.z = 1.5;
-
-				//handPointer1.add( line.clone() );
-				//handPointer2.add( line.clone() );
-
-				controller1.add( line.clone() );
-				controller2.add( line.clone() );
-				//console.log(controller1.children);
-				//console.log(controller2.children);
 
 				function onSelectStart() {
 
@@ -763,7 +743,7 @@
 
 				}
 
-				//controller1 = renderer.xr.getController( 0 );
+				controller1 = renderer.xr.getController( 0 );
 				controller1.addEventListener( 'selectstart', onSelectStart );
 				controller1.addEventListener( 'selectend', onSelectEnd );
 				controller1.addEventListener( 'connected', function ( event ) {
@@ -773,12 +753,12 @@
 				} );
 				controller1.addEventListener( 'disconnected', function () {
 
-					this.remove( this.children[ 1 ] );
+					this.remove( this.children[ 0 ] );
 
 				} );
-				//scene.add( controller1 );
+				scene.add( controller1 );
 
-				//controller2 = renderer.xr.getController( 1 );
+				controller2 = renderer.xr.getController( 1 );
 				controller2.addEventListener( 'selectstart', onSelectStart );
 				controller2.addEventListener( 'selectend', onSelectEnd );
 				controller2.addEventListener( 'connected', function ( event ) {
@@ -788,10 +768,30 @@
 				} );
 				controller2.addEventListener( 'disconnected', function () {
 
-					this.remove( this.children[ 1 ] );
+					this.remove( this.children[ 0 ] );
 
 				} );
+				scene.add( controller2 );
+				
+				//const controller1 = renderer.xr.getController( 0 );
+				//scene.add( controller1 );
+	
+				//const controller2 = renderer.xr.getController( 1 );
 				//scene.add( controller2 );
+
+				const geometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
+
+				const line = new THREE.Line( geometry );
+				line.name = 'line';
+				line.scale.z = 1.5;
+
+				//handPointer1.add( line.clone() );
+				//handPointer2.add( line.clone() );
+
+				controller1.add( line.clone() );
+				controller2.add( line.clone() );
+				console.log(controller1.children);
+				console.log(controller2.children);
 	
 				const controllerModelFactory = new XRControllerModelFactory();
 	
