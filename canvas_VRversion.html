@@ -753,7 +753,7 @@
 				} );
 				controller1.addEventListener( 'disconnected', function () {
 
-					this.remove( this.children[ 0 ] );
+					this.remove( this.children[ 1 ] );
 
 				} );
 				scene.add( controller1 );
@@ -768,7 +768,7 @@
 				} );
 				controller2.addEventListener( 'disconnected', function () {
 
-					this.remove( this.children[ 0 ] );
+					this.remove( this.children[ 1 ] );
 
 				} );
 				scene.add( controller2 );
@@ -785,15 +785,10 @@
 				line.name = 'line';
 				line.scale.z = 1.5;
 
-				const line2 = new THREE.Line( geometry );
-				line2.name = 'line2';
-				line2.scale.z = 3;
-
 				//handPointer1.add( line.clone() );
 				//handPointer2.add( line.clone() );
 
 				controller1.add( line.clone() );
-				controller1.add( line2.clone() );
 				controller2.add( line.clone() );
 				console.log(controller1.children);
 				console.log(controller2.children);
