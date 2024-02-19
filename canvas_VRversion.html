@@ -845,7 +845,9 @@
 					.registerSystem( HandRaySystem, { handPointers: [ handPointer1, handPointer2 ] } );
 				
 				let data = globalData.cellData;
+				let i = 0;
 				data.forEach(element => {
+					if (i <= 10) {
 					let colorStr = globalData.categoricalColorDict[element[globalData.curMarkerGene.Attribute]];
 					const object = new THREE.Mesh( new THREE.SphereGeometry( 0.1, 32, 16 ), new THREE.MeshLambertMaterial( { color: colorStr } ) );
 					
@@ -879,6 +881,9 @@
 					entity.addComponent( Object3D, { object: object } );
 					entity.addComponent( Draggable );
 					console.log("Added a ball");
+
+					i = i+1;
+					}
 					
 				    })
 	
