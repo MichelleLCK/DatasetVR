@@ -528,6 +528,8 @@
 
 						if ( intersectingEntity.hasComponent( Teleport ) ) {
 
+							const teleport = intersectingEntity.getMutableComponent( Teleport );
+
 							if ( hp.isPinched() ) {
 
 								teleport.currState = 'pressed';
