@@ -415,7 +415,7 @@
 					const teleport = entity.getMutableComponent( Teleport );
 					const room = entity.getComponent( Object3D ).object;
 
-					if ( teleport.withCursor == 'none') {		
+					if ( teleport.currState != 'none' && teleport.withCursor == 'none') {		
 						let geometry, material;
 						let controller = teleport.attachedPointer.children[ 0 ];
 
