@@ -414,10 +414,10 @@
 
 					const teleport = entity.getMutableComponent( Teleport );
 					const room = entity.getComponent( Object3D ).object;
-					let geometry, material;
-					let controller = teleport.attachedPointer.children[ 0 ];
 
-					if ( teleport.withCursor == 'none') {				
+					if ( teleport.withCursor == 'none') {		
+						let geometry, material;
+						let controller = teleport.attachedPointer.children[ 0 ];
 
 						geometry = new THREE.RingGeometry( 0.02, 0.04, 32 ).translate( 0, 0, - 1 );
 						material = new THREE.MeshBasicMaterial( { opacity: 0.5, transparent: true } );
@@ -427,12 +427,14 @@
 	
 					}
 					if ( teleport.currState == 'pressed') {
-
+						
+						let controller = teleport.attachedPointer.children[ 0 ];
 						let cursorMesh = controller.children[1];
 						cursorMesh.material.opacity = 0.9; 
 	
 					} else {
 						
+						let controller = teleport.attachedPointer.children[ 0 ];
 						let cursorMesh = controller.children[1];
 						cursorMesh.material.opacity = 0.5; 
 						
