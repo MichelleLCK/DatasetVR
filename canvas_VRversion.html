@@ -393,7 +393,7 @@
 			// button states: [none, hovered, pressed]
 			currState: { type: Types.String, default: 'none' },
 			prevState: { type: Types.String, default: 'none' },
-			state: { type: Types.String, default: 'none' },
+			withCursor: { type: Types.String, default: 'none' },
 			originalParent: { type: Types.Ref, default: null },
 			attachedPointer: { type: Types.Ref, default: null }
 		};
@@ -407,30 +407,44 @@
 					const teleport = entity.getMutableComponent( Teleport );
 					const room = entity.getComponent( Object3D ).object;
 					let geometry, material;
+					let controller = draggable.attachedPointer.children[ 0 ];
 
-					if ( teleport.currState != 'pressed' ) {
-
-						let controller = draggable.attachedPointer.children[ 0 ];
+					if ( teleport.withCursor == 'none') {				
 
 						geometry = new THREE.RingGeometry( 0.02, 0.04, 32 ).translate( 0, 0, - 1 );
 						material = new THREE.MeshBasicMaterial( { opacity: 0.5, transparent: true } );
 						controller.add( new THREE.Mesh( geometry, material ) );
+						teleport.withCursor = 'yes';
 	
-						buttonMesh.scale.set( 1, 1, 1 );
+	
+					}
+					if ( teleport.currState == 'pressed') {
+
+						let cursorMesh = controller.children[1];
+						cursorMesh.material.opacity = 0.9; 
 	
 					} else {
-
-						geometry = new THREE.RingGeometry( 0.02, 0.04, 32 ).translate( 0, 0, - 1 );
-						material = new THREE.MeshBasicMaterial( { opacity: 0.5, transparent: true } );
-						return new THREE.Mesh( geometry, material );
-	
-						buttonMesh.scale.set( 1.1, 1.1, 1.1 );
-	
+						
+						let cursorMesh = controller.children[1];
+						cursorMesh.material.opacity = 0.5; 
+						
 					}
 	
 					if ( teleport.currState == 'pressed' && teleport.prevState != 'pressed' ) {
+
+						INTERSECTION = undefined;
 	
-						teleport.action();
+						const intersects = draggable.attachedPointer.intersectObjects( [ room ] );
+
+						if ( intersects.length > 0 ) {
+	
+							INTERSECTION = intersects[ 0 ].point;
+	
+						}
+
+						//if ( INTERSECTION ) marker.position.copy( INTERSECTION );
+
+						//marker.visible = INTERSECTION !== undefined;
 	
 					}
 	
@@ -491,19 +505,6 @@
 						}
 
 					} );
-					//const geometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
-
-					//const geometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
-					//var line = new THREE.Line( geometry );
-					//const line = entity.getComponent( Object3D ).line;
-					//line.name = 'line';
-					//line.scale.z = 100;
-					//let line = hp.constructor.raycaster.ray.clone();
-					//let raycaster = hp.raycaster;
-					//let line = raycaster['ray'];
-					//const vector = hp.raycaster['origin'];
-					//line.name = 'line';
-					//hp.add( line );
 					
 					if ( distance ) {
 
