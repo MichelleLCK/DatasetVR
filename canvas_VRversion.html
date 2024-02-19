@@ -432,7 +432,7 @@
 						let cursorMesh = controller.children[1];
 						cursorMesh.material.opacity = 0.9; 
 	
-					} else {
+					} else if ( teleport.currState == 'hovered' && teleport.withCursor == 'yes') {
 						
 						let controller = teleport.attachedPointer.children[ 0 ];
 						let cursorMesh = controller.children[1];
