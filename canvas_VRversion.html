@@ -415,7 +415,7 @@
 					const teleport = entity.getMutableComponent( Teleport );
 					const room = entity.getComponent( Object3D ).object;
 					let geometry, material;
-					let controller = draggable.attachedPointer.children[ 0 ];
+					let controller = teleport.attachedPointer.children[ 0 ];
 
 					if ( teleport.withCursor == 'none') {				
 
@@ -442,7 +442,7 @@
 
 						INTERSECTION = undefined;
 	
-						const intersects = draggable.attachedPointer.intersectObjects( [ room ] );
+						const intersects = teleport.attachedPointer.intersectObjects( [ room ] );
 
 						if ( intersects.length > 0 ) {
 	
