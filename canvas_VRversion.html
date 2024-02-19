@@ -393,7 +393,9 @@
 			// button states: [none, hovered, pressed]
 			currState: { type: Types.String, default: 'none' },
 			prevState: { type: Types.String, default: 'none' },
-			state: { type: Types.String, default: 'none' }
+			state: { type: Types.String, default: 'none' },
+			originalParent: { type: Types.Ref, default: null },
+			attachedPointer: { type: Types.Ref, default: null }
 		};
 
 		class TeleportSystem extends System {
@@ -533,10 +535,14 @@
 							if ( hp.isPinched() ) {
 
 								teleport.currState = 'pressed';
+								teleport.attachedPointer = hp;
+								hp.setAttached( true );
 
 							} else if ( teleport.currState != 'pressed' ) {
 
 								teleport.currState = 'hovered';
+								teleport.attachedPointer = null;
+								hp.setAttached( false );
 
 							}
 
