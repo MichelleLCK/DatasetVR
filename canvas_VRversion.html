@@ -400,6 +400,14 @@
 
 		class TeleportSystem extends System {
 
+			init( attributes ) {
+
+				this.camera = attributes.camera;
+				this.renderer = attributes.renderer;
+				this.marker = attributes.marker;
+
+			}
+
 			execute( /*delta, time*/ ) {
 
 				this.queries.teleport.results.forEach( entity => {
@@ -442,9 +450,9 @@
 	
 						}
 
-						//if ( INTERSECTION ) marker.position.copy( INTERSECTION );
+						if ( INTERSECTION ) this.marker.position.copy( INTERSECTION );
 
-						//marker.visible = INTERSECTION !== undefined;
+						this.marker.visible = INTERSECTION !== undefined;
 	
 					}
 	
@@ -987,7 +995,7 @@
 					.registerSystem( CalibrationSystem, { renderer: renderer, camera: camera } )
 					.registerSystem( ButtonSystem )
 					.registerSystem( DraggableSystem )
-					.registerSystem( TeleportSystem )
+					.registerSystem( TeleportSystem, { renderer: renderer, camera: camera, marker: marker } )
 					.registerSystem( HandRaySystem, { handPointers: [ handPointer1, handPointer2 ] } );
 				
 				let data = globalData.cellData;
