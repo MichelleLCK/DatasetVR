@@ -953,7 +953,7 @@
 					transparent: true,
 				} );
 				const menuMesh = new THREE.Mesh( menuGeometry, menuMaterial );
-				menuMesh.position.set( 1.4, 1, - 1 );
+				menuMesh.position.set( 0.9, 1, - 1 );
 				menuMesh.rotation.y = - Math.PI / 12;
 				scene.add( menuMesh );
 	
@@ -961,22 +961,22 @@
 				const resetButtonText = createText( 'reset', 0.06 );
 				resetButton.add( resetButtonText );
 				resetButtonText.position.set( 0, 0, 0.0051 );
-				resetButton.position.set( 1, - 0.06, 0 );
+				resetButton.position.set( 0.5, - 0.06, 0 );
 				menuMesh.add( resetButton );
 	
 				const exitButton = makeButtonMesh( 0.2, 0.1, 0.01, 0xff0000 );
 				const exitButtonText = createText( 'exit', 0.06 );
 				exitButton.add( exitButtonText );
 				exitButtonText.position.set( 0, 0, 0.0051 );
-				exitButton.position.set( 1, - 0.18, 0 );
+				exitButton.position.set( 0.5, - 0.18, 0 );
 				menuMesh.add( exitButton );
 	
 				const instructionText = createText( 'This is a WebXR Hands demo, please explore with hands.', 0.04 );
-				instructionText.position.set( 1, 1.6, - 0.6 );
+				instructionText.position.set( 0.5, 1.6, - 0.6 );
 				scene.add( instructionText );
 	
 				const exitText = createText( 'Exiting session...', 0.04 );
-				exitText.position.set( 1, 1.5, - 0.6 );
+				exitText.position.set( 0.5, 1.5, - 0.6 );
 				exitText.visible = false;
 				scene.add( exitText );
 	
