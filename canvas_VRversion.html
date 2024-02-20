@@ -387,93 +387,93 @@
 			}
 		};
 
-	    	class Teleport extends Component { }
+//	    	class Teleport extends Component { }
 
-	    	Teleport.schema = {
+//	    	Teleport.schema = {
 			// button states: [none, hovered, pressed]
-			currState: { type: Types.String, default: 'none' },
-			prevState: { type: Types.String, default: 'none' },
-			withCursor: { type: Types.String, default: 'none' },
-			originalParent: { type: Types.Ref, default: null },
-			attachedPointer: { type: Types.Ref, default: null }
-		};
-
-		class TeleportSystem extends System {
-
-			init( attributes ) {
-
-				this.camera = attributes.camera;
-				this.renderer = attributes.renderer;
-				this.marker = attributes.marker;
-
-			}
-
-			execute( /*delta, time*/ ) {
-
-				this.queries.teleport.results.forEach( entity => {
-
-					const teleport = entity.getMutableComponent( Teleport );
-					const room = entity.getComponent( Object3D ).object;
-
-					if ( teleport.currState != 'none' && teleport.withCursor == 'none') {		
-						let geometry, material;
-						let controller = teleport.attachedPointer.children[ 0 ];
-
-						geometry = new THREE.RingGeometry( 0.02, 0.04, 32 ).translate( 0, 0, - 1 );
-						material = new THREE.MeshBasicMaterial( { opacity: 0.5, transparent: true } );
-						controller.add( new THREE.Mesh( geometry, material ) );
-						teleport.withCursor = 'yes';
+//			currState: { type: Types.String, default: 'none' },
+//			prevState: { type: Types.String, default: 'none' },
+//			withCursor: { type: Types.String, default: 'none' },
+//			originalParent: { type: Types.Ref, default: null },
+//			attachedPointer: { type: Types.Ref, default: null }
+//		};
+//
+//		class TeleportSystem extends System {
+//
+//			init( attributes ) {
+//
+//				this.camera = attributes.camera;
+//				this.renderer = attributes.renderer;
+//				this.marker = attributes.marker;
+//
+//			}
+//
+//			execute( /*delta, time*/ ) {
+//
+//				this.queries.teleport.results.forEach( entity => {
+//
+//					const teleport = entity.getMutableComponent( Teleport );
+//					const room = entity.getComponent( Object3D ).object;
+//
+//					if ( teleport.currState != 'none' && teleport.withCursor == 'none') {		
+//						let geometry, material;
+//						let controller = teleport.attachedPointer.children[ 0 ];
+//
+//						geometry = new THREE.RingGeometry( 0.02, 0.04, 32 ).translate( 0, 0, - 1 );
+//						material = new THREE.MeshBasicMaterial( { opacity: 0.5, transparent: true } );
+//						controller.add( new THREE.Mesh( geometry, material ) );
+//						teleport.withCursor = 'yes';
+//	
+//	
+//					}
+//					if ( teleport.currState == 'pressed') {
+//						
+//						let controller = teleport.attachedPointer.children[ 0 ];
+//						let cursorMesh = controller.children[1];
+//						cursorMesh.material.opacity = 0.9; 
 	
-	
-					}
-					if ( teleport.currState == 'pressed') {
+//					} else if ( teleport.currState == 'hovered' && teleport.withCursor == 'yes') {
+//						
+//						let controller = teleport.attachedPointer.children[ 0 ];
+//						let cursorMesh = controller.children[1];
+//						cursorMesh.material.opacity = 0.5; 
 						
-						let controller = teleport.attachedPointer.children[ 0 ];
-						let cursorMesh = controller.children[1];
-						cursorMesh.material.opacity = 0.9; 
+//					}
 	
-					} else if ( teleport.currState == 'hovered' && teleport.withCursor == 'yes') {
-						
-						let controller = teleport.attachedPointer.children[ 0 ];
-						let cursorMesh = controller.children[1];
-						cursorMesh.material.opacity = 0.5; 
-						
-					}
-	
-					if ( teleport.currState == 'pressed' && teleport.prevState != 'pressed' ) {
+//					if ( teleport.currState == 'pressed' && teleport.prevState != 'pressed' ) {
 
-						INTERSECTION = undefined;
+//						INTERSECTION = undefined;
 	
-						const intersects = teleport.attachedPointer.intersectObjects( [ room ] );
+//						const intersects = teleport.attachedPointer.intersectObjects( [ room ] );
 
-						if ( intersects.length > 0 ) {
+//						if ( intersects.length > 0 ) {
 	
-							INTERSECTION = intersects[ 0 ].point;
+//							INTERSECTION = intersects[ 0 ].point;
 	
-						}
+//						}
 
-						if ( INTERSECTION ) this.marker.position.copy( INTERSECTION );
+//						if ( INTERSECTION ) this.marker.position.copy( INTERSECTION );
 
-						this.marker.visible = INTERSECTION !== undefined;
+//						this.marker.visible = INTERSECTION !== undefined;
 	
-					}
+//					}
 	
 					// preserve prevState, clear currState
 					// HandRaySystem will update currState
-					teleport.prevState = teleport.currState;
-					teleport.currState = 'none';
+//					teleport.prevState = teleport.currState;
+//					teleport.currState = 'none';
+//
+//				} );
 
-				} );
+//			}
 
-			}
+//		}
 
-		}
-
-		TeleportSystem.queries = {
-			teleport: {
-				components: [ Teleport ]
-			}
-		};
+//		TeleportSystem.queries = {
+//			teleport: {
+//				components: [ Teleport ]
+//			}
+//		};
 
 		class Intersectable extends TagComponent { }
 
@@ -537,25 +537,25 @@
 
 						}
 
-						if ( intersectingEntity.hasComponent( Teleport ) ) {
+//						if ( intersectingEntity.hasComponent( Teleport ) ) {
 
-							const teleport = intersectingEntity.getMutableComponent( Teleport );
+//							const teleport = intersectingEntity.getMutableComponent( Teleport );
 
-							if ( hp.isPinched() ) {
+//							if ( hp.isPinched() ) {
 
-								teleport.currState = 'pressed';
-								teleport.attachedPointer = hp;
-								hp.setAttached( true );
+//								teleport.currState = 'pressed';
+//								teleport.attachedPointer = hp;
+//								hp.setAttached( true );
 
-							} else if ( teleport.currState != 'pressed' ) {
+//							} else if ( teleport.currState != 'pressed' ) {
 
-								teleport.currState = 'hovered';
-								teleport.attachedPointer = null;
-								hp.setAttached( false );
+//								teleport.currState = 'hovered';
+//								teleport.attachedPointer = null;
+//								hp.setAttached( false );
 
-							}
+//							}
 
-						}
+//						}
 
 						if ( intersectingEntity.hasComponent( Draggable ) ) {
 
@@ -989,7 +989,7 @@
 					.registerComponent( NeedCalibration )
 					.registerComponent( Randomizable )
 					.registerComponent( Draggable )
-					.registerComponent( Teleport );
+//					.registerComponent( Teleport );
 	
 				world
 					.registerSystem( RandomizerSystem )
@@ -997,13 +997,13 @@
 					.registerSystem( CalibrationSystem, { renderer: renderer, camera: camera } )
 					.registerSystem( ButtonSystem )
 					.registerSystem( DraggableSystem )
-					.registerSystem( TeleportSystem, { renderer: renderer, camera: camera, marker: marker } )
+//					.registerSystem( TeleportSystem, { renderer: renderer, camera: camera, marker: marker } )
 					.registerSystem( HandRaySystem, { handPointers: [ handPointer1, handPointer2 ] } );
 				
 				let data = globalData.cellData;
 				data.forEach(element => {
 					let colorStr = globalData.categoricalColorDict[element[globalData.curMarkerGene.Attribute]];
-					const object = new THREE.Mesh( new THREE.SphereGeometry( 0.05, 32, 16 ), new THREE.MeshLambertMaterial( { color: colorStr } ) );
+					const object = new THREE.Mesh( new THREE.SphereGeometry( 0.02, 32, 16 ), new THREE.MeshLambertMaterial( { color: colorStr } ) );
 					
 					scene.add( object );
 
