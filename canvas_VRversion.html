@@ -953,7 +953,7 @@
 					transparent: true,
 				} );
 				const menuMesh = new THREE.Mesh( menuGeometry, menuMaterial );
-				menuMesh.position.set( 0.04, 0.1, - 0.1 );
+				menuMesh.position.set( 0.4, 1, - 1 );
 				menuMesh.rotation.y = - Math.PI / 12;
 				scene.add( menuMesh );
 	
@@ -961,22 +961,22 @@
 				const resetButtonText = createText( 'reset', 0.06 );
 				resetButton.add( resetButtonText );
 				resetButtonText.position.set( 0, 0, 0.0051 );
-				resetButton.position.set( 0, - 0.006, 0 );
+				resetButton.position.set( 0, - 0.06, 0 );
 				menuMesh.add( resetButton );
 	
 				const exitButton = makeButtonMesh( 0.2, 0.1, 0.01, 0xff0000 );
 				const exitButtonText = createText( 'exit', 0.06 );
 				exitButton.add( exitButtonText );
 				exitButtonText.position.set( 0, 0, 0.0051 );
-				exitButton.position.set( 0, - 0.018, 0 );
+				exitButton.position.set( 0, - 0.18, 0 );
 				menuMesh.add( exitButton );
 	
 				const instructionText = createText( 'This is a WebXR Hands demo, please explore with hands.', 0.04 );
-				instructionText.position.set( 0, 0.16, - 0.06 );
+				instructionText.position.set( 0, 1.6, - 0.6 );
 				scene.add( instructionText );
 	
 				const exitText = createText( 'Exiting session...', 0.04 );
-				exitText.position.set( 0, 0.15, - 0.06 );
+				exitText.position.set( 0, 1.5, - 0.6 );
 				exitText.visible = false;
 				scene.add( exitText );
 	
@@ -1009,20 +1009,20 @@
 
 					if (globalData.curStatus === 1) {
 					    loader.getObjectFromID(globalData.cellData3D, element[globalData.idStr], globalData.idStr).then(target => {
-						object.position.x = target[globalData.curVisMethod.x]*globalData.scaleUp*0.01+0.2;
-						object.position.y = target[globalData.curVisMethod.y]*globalData.scaleUp*0.01+0.3;
-						object.position.z = target[globalData.curVisMethod.z]*globalData.scaleUp*0.01-1;
+						object.position.x = target[globalData.curVisMethod.x]*globalData.scaleUp*0.01+2;
+						object.position.y = target[globalData.curVisMethod.y]*globalData.scaleUp*0.01+3;
+						object.position.z = target[globalData.curVisMethod.z]*globalData.scaleUp*0.01-10;
 					    }, reject => {console.log(reject)})
 					} else if (globalData.curStatus === 2) {
 					    loader.getObjectFromID(globalData.cellData3D2, element[globalData.idStr], globalData.idStr).then(target => {
-						object.position.x = target[globalData.curVisMethod.x]*globalData.scaleUp*0.01+0.2;
-						object.position.y = target[globalData.curVisMethod.y]*globalData.scaleUp*0.01+0.3;
-						object.position.z = target[globalData.curVisMethod.z]*globalData.scaleUp*0.01-1;
+						object.position.x = target[globalData.curVisMethod.x]*globalData.scaleUp*0.01+2;
+						object.position.y = target[globalData.curVisMethod.y]*globalData.scaleUp*0.01+3;
+						object.position.z = target[globalData.curVisMethod.z]*globalData.scaleUp*0.01-10;
 					    }, reject => {console.log(reject)})
 					} else {
-					    object.position.x = element[globalData.curVisMethod.x]*globalData.scaleUp*0.01+0.2;
-					    object.position.y = element[globalData.curVisMethod.y]*globalData.scaleUp*0.01+0.3;
-					    object.position.z = element[globalData.curVisMethod.z]*globalData.scaleUp*0.01-1;
+					    object.position.x = element[globalData.curVisMethod.x]*globalData.scaleUp*0.01+2;
+					    object.position.y = element[globalData.curVisMethod.y]*globalData.scaleUp*0.01+3;
+					    object.position.z = element[globalData.curVisMethod.z]*globalData.scaleUp*0.01-10;
 					}
 					
 					//const geometry = new THREE.SphereGeometry( 15, 32, 16 ); 
